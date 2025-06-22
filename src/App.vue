@@ -1,16 +1,25 @@
-<template>
-  <div id="app">
-    <NavBar />
-    <main class="main-content">
-      <RouterView />
-    </main>
-  </div>
-</template>
-
 <script setup>
 import { RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
 import NavBar from './components/NavBar.vue'
+import logger from './utils/logger.js'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  logger.info('App mounted')
+})
 </script>
+
+<template>
+  <header class="app-container">
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
+    <NavBar />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
+  </header>
 
 <style>
 * {
@@ -19,16 +28,20 @@ import NavBar from './components/NavBar.vue'
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
-  color: #333;
-  overflow-x: hidden;
+<style module>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
 }
 
-#app {
-  min-height: 100vh;
-  position: relative;
+.app-container {
+  @apply glassmorphism;
+  padding: 20px;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
 }
 
 .main-content {

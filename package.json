@@ -14,8 +14,7 @@
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
-    "log:dev": "echo 'Development logging enabled - check browser console'",
-    "log:prod": "echo 'Production logging would send to server - currently mocked'"
+    "test:unit:home": "vitest src/components/__tests__/HomePage.spec.js"
   },
   "dependencies": {
     "vue": "^3.5.13",
