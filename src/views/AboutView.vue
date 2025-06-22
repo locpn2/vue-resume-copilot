@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about contact-view">
     <h1>This is an about page</h1>
   </div>
 </template>
@@ -11,5 +11,12 @@
     display: flex;
     align-items: center;
   }
+}
+</style>
+
+<style module>
+.contact-view {
+  @apply glassmorphism;
+  padding: 20px;
 }
 </style>
