@@ -2,6 +2,12 @@
 import { RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import NavBar from './components/NavBar.vue'
+import logger from './utils/logger.js'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  logger.info('App mounted')
+})
 </script>
 
 <template>

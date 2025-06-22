@@ -12,6 +12,12 @@
 <script setup>
 import ChatSuggestion from '../components/ChatSuggestion.vue'
 import { chatSuggestions } from '../data.js'
+import logger from '../utils/logger.js'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  logger.info('ChatPage mounted')
+})
 </script>
 
 <style module>

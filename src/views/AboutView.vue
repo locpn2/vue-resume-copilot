@@ -1,3 +1,12 @@
+<script setup>
+import logger from '../utils/logger.js'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  logger.info('AboutView mounted')
+})
+</script>
+
 <template>
   <div class="about contact-view">
     <h1>This is an about page</h1>
