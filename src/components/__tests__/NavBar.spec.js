@@ -25,3 +25,22 @@ describe('NavBar', () => {
     expect(wrapper.text()).toContain('Chat');
   });
 });
+=======
+import { describe, it, expect, vi } from 'vitest'
+import { mount } from '@vue/test-utils'
+import { createRouter, createWebHistory } from 'vue-router'
+import NavBar from '../NavBar.vue'
+
+// Mock logger
+const mockLogger = {
+  info: vi.fn(),
+  logUserInteraction: vi.fn()
+}
+
+// Create a mock router
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [
+    { path: '/', component: { template: '<div>Home</div>' } },
+    { path: '/contact', component: { template: '<div>Contact</div>' } }
+  ]
