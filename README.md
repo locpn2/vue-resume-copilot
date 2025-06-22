@@ -1,3 +1,3 @@
-# Resume Copilot
+# vue-resume-copilot
 
-A Vue.js project for creating and managing resumes.
+Crafting an interactive resume UI with Vue.js and an AI Copilot for deeper recruiter insights.
