@@ -1,289 +1,235 @@
 <template>
   <div class="home-page">
-    <!-- Hero Section -->
+    <!-- Hero Section with CTA -->
     <section class="hero-section" role="banner">
+      <div class="hero-background" aria-hidden="true"></div>
       <div class="hero-content">
-        <div class="avatar-container">
-          <img 
-            :src="personalInfo.avatar" 
-            :alt="`Ảnh đại diện của ${personalInfo.name} - ${personalInfo.title}`"
-            class="avatar"
-            @error="handleImageError"
-            loading="lazy"
-            width="200"
-            height="200"
-          />
-          <div class="avatar-glow" aria-hidden="true"></div>
-        </div>
-        
-        <div class="hero-text">
-          <h1 class="hero-name">{{ personalInfo.name }}</h1>
-          <h2 class="hero-title">{{ personalInfo.title }}</h2>
-          <p class="hero-summary">{{ personalInfo.detailedSummary }}</p>
-          
-          <div class="hero-contact" role="list">
-            <div class="contact-item" role="listitem">
-              <span class="icon" aria-label="Email">📧</span>
-              <a 
-                :href="`mailto:${personalInfo.email}`"
-                class="contact-link"
-                :aria-label="`Gửi email đến ${personalInfo.email}`"
-              >
-                {{ personalInfo.email }}
-              </a>
-            </div>
-            <div class="contact-item" role="listitem">
-              <span class="icon" aria-label="Số điện thoại">📱</span>
-              <a 
-                :href="`tel:${personalInfo.phone}`"
-                class="contact-link"
-                :aria-label="`Gọi điện đến ${personalInfo.phone}`"
-              >
-                {{ personalInfo.phone }}
-              </a>
-            </div>
-            <div class="contact-item" role="listitem">
-              <span class="icon" aria-label="Địa điểm">📍</span>
-              <span>{{ personalInfo.location }}</span>
-            </div>
+        <div class="hero-main">
+          <div class="avatar-container">
+            <img 
+              :src="personalInfo.avatar" 
+              :alt="`Ảnh đại diện của ${personalInfo.name} - ${personalInfo.title}`"
+              class="avatar"
+              @error="handleImageError"
+              loading="eager"
+              width="200"
+              height="200"
+            />
+            <div class="avatar-glow" aria-hidden="true"></div>
           </div>
+          
+          <div class="hero-text">
+            <h1 class="hero-name">{{ personalInfo.name }}</h1>
+            <h2 class="hero-title">{{ personalInfo.title }}</h2>
+            <p class="hero-summary">{{ personalInfo.summary }}</p>
+            
+            <!-- Call to Action Buttons -->
+            <div class="hero-cta">
+              <RouterLink to="/contact" class="cta-primary">
+                <span class="cta-icon">📧</span>
+                <span>Liên Hệ Ngay</span>
+              </RouterLink>
+              <RouterLink to="/projects" class="cta-secondary">
+                <span class="cta-icon">🚀</span>
+                <span>Xem Dự Án</span>
+              </RouterLink>
+              <a 
+                :href="personalInfo.socialLinks.portfolio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-tertiary"
+                v-log-click="'portfolio-cta'"
+              >
+                <span class="cta-icon">🌐</span>
+                <span>Portfolio</span>
+              </a>
+            </div>
 
-          <!-- Social Links -->
-          <div class="social-links" role="list" aria-label="Liên kết mạng xã hội">
-            <a 
-              :href="personalInfo.socialLinks.github"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-              role="listitem"
-              aria-label="Xem GitHub profile"
-              v-log-click="'github-link'"
-            >
-              <span class="social-icon">🔗</span>
-              <span>GitHub</span>
-            </a>
-            <a 
-              :href="personalInfo.socialLinks.linkedin"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-              role="listitem"
-              aria-label="Xem LinkedIn profile"
-              v-log-click="'linkedin-link'"
-            >
-              <span class="social-icon">💼</span>
-              <span>LinkedIn</span>
-            </a>
-            <a 
-              :href="personalInfo.socialLinks.portfolio"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="social-link"
-              role="listitem"
-              aria-label="Xem Portfolio website"
-              v-log-click="'portfolio-link'"
-            >
-              <span class="social-icon">🌐</span>
-              <span>Portfolio</span>
-            </a>
+            <!-- Quick Contact Info -->
+            <div class="hero-contact" role="list">
+              <div class="contact-item" role="listitem">
+                <span class="icon" aria-label="Email">📧</span>
+                <a 
+                  :href="`mailto:${personalInfo.email}`"
+                  class="contact-link"
+                  :aria-label="`Gửi email đến ${personalInfo.email}`"
+                >
+                  {{ personalInfo.email }}
+                </a>
+              </div>
+              <div class="contact-item" role="listitem">
+                <span class="icon" aria-label="Số điện thoại">📱</span>
+                <a 
+                  :href="`tel:${personalInfo.phone}`"
+                  class="contact-link"
+                  :aria-label="`Gọi điện đến ${personalInfo.phone}`"
+                >
+                  {{ personalInfo.phone }}
+                </a>
+              </div>
+              <div class="contact-item" role="listitem">
+                <span class="icon" aria-label="Địa điểm">📍</span>
+                <span>{{ personalInfo.location }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="experience-section" aria-labelledby="experience-heading">
-      <div class="section-header">
-        <h2 id="experience-heading" class="section-title">Kinh Nghiệm Làm Việc</h2>
-        <div class="section-line" aria-hidden="true"></div>
+    <!-- Quick Stats Section -->
+    <section class="stats-section" aria-labelledby="stats-heading">
+      <div class="stats-container">
+        <h2 id="stats-heading" class="sr-only">Thống kê nhanh</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Năm kinh nghiệm</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ projects.length }}</div>
+            <div class="stat-label">Dự án hoàn thành</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ skills.length }}+</div>
+            <div class="stat-label">Kỹ năng chuyên môn</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Khách hàng hài lòng</div>
+          </div>
+        </div>
       </div>
-      
-      <div class="experience-timeline" role="list" aria-label="Lịch sử kinh nghiệm làm việc">
-        <article 
-          v-for="(exp, index) in experience" 
-          :key="exp.id"
-          class="experience-item"
-          :class="{ 'reverse': index % 2 === 1 }"
-          role="listitem"
-        >
-          <div class="experience-card">
-            <header class="experience-header">
-              <h3 class="experience-position">{{ exp.position }}</h3>
-              <div class="experience-company">{{ exp.company }}</div>
-              <div class="experience-duration">
-                <time>{{ exp.duration }}</time>
-                <span class="experience-location">{{ exp.location }}</span>
+    </section>
+
+    <!-- Featured Projects Preview -->
+    <section class="featured-projects" aria-labelledby="featured-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <h2 id="featured-heading" class="section-title">Dự Án Nổi Bật</h2>
+          <div class="section-line" aria-hidden="true"></div>
+          <p class="section-subtitle">Một số dự án tiêu biểu tôi đã thực hiện</p>
+        </div>
+        
+        <div class="projects-preview">
+          <article 
+            v-for="project in featuredProjects" 
+            :key="project.id"
+            class="project-preview-card"
+            @click="openProjectDemo(project.links.demo)"
+            @keydown.enter="openProjectDemo(project.links.demo)"
+            @keydown.space.prevent="openProjectDemo(project.links.demo)"
+            tabindex="0"
+            role="button"
+            :aria-label="`Xem chi tiết dự án ${project.name}`"
+          >
+            <div class="project-image">
+              <img 
+                :src="project.image" 
+                :alt="`Hình ảnh minh họa dự án ${project.name} - ${project.description}`"
+                loading="lazy"
+                width="300"
+                height="200"
+              />
+              <div class="project-overlay" aria-hidden="true">
+                <span class="view-text">Xem Chi Tiết</span>
               </div>
-            </header>
-            
-            <p class="experience-description">{{ exp.description }}</p>
-            
-            <div class="experience-responsibilities">
-              <h4>Trách nhiệm chính:</h4>
-              <ul role="list">
-                <li v-for="responsibility in exp.responsibilities" :key="responsibility" role="listitem">
-                  {{ responsibility }}
-                </li>
-              </ul>
             </div>
-
-            <div class="experience-achievements">
-              <h4>Thành tựu nổi bật:</h4>
-              <ul role="list">
-                <li v-for="achievement in exp.achievements" :key="achievement" role="listitem">
-                  {{ achievement }}
-                </li>
-              </ul>
-            </div>
-
-            <div class="experience-technologies">
-              <h4>Công nghệ sử dụng:</h4>
-              <div class="tech-tags">
+            
+            <div class="project-info">
+              <h3 class="project-name">{{ project.name }}</h3>
+              <p class="project-desc">{{ project.description.substring(0, 100) }}...</p>
+              <div class="project-tech">
                 <span 
-                  v-for="tech in exp.technologies" 
+                  v-for="tech in project.technologies.slice(0, 3)" 
                   :key="tech"
-                  class="tech-tag"
+                  class="tech-badge"
                 >
                   {{ tech }}
                 </span>
               </div>
             </div>
-          </div>
-          
-          <div class="timeline-dot" aria-hidden="true"></div>
-        </article>
+          </article>
+        </div>
+
+        <div class="section-cta">
+          <RouterLink to="/projects" class="view-all-btn">
+            <span>Xem Tất Cả Dự Án</span>
+            <span class="btn-arrow">→</span>
+          </RouterLink>
+        </div>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="skills-section" aria-labelledby="skills-heading">
-      <div class="section-header">
-        <h2 id="skills-heading" class="section-title">Kỹ Năng Chuyên Môn</h2>
-        <div class="section-line" aria-hidden="true"></div>
-      </div>
-      
-      <SkillChart :skills="skills" />
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects-section" aria-labelledby="projects-heading">
-      <div class="section-header">
-        <h2 id="projects-heading" class="section-title">Dự Án Nổi Bật</h2>
-        <div class="section-line" aria-hidden="true"></div>
-      </div>
-      
-      <div class="projects-grid" role="list" aria-label="Danh sách dự án">
-        <article 
-          v-for="project in projects" 
-          :key="project.id"
-          class="project-card"
-          role="listitem"
-          tabindex="0"
-          @click="openProjectDemo(project.links.demo)"
-          @keydown.enter="openProjectDemo(project.links.demo)"
-          @keydown.space.prevent="openProjectDemo(project.links.demo)"
-          v-log-click="project.name"
-          :aria-label="`Dự án ${project.name}. Nhấn Enter để xem demo.`"
-        >
-          <div class="project-image">
-            <img 
-              :src="project.image" 
-              :alt="`Screenshot của dự án ${project.name}`"
-              loading="lazy"
-              width="400"
-              height="200"
-            />
-            <div class="project-overlay" aria-hidden="true">
-              <span class="view-project">Xem Demo</span>
-            </div>
-          </div>
-          
-          <div class="project-content">
-            <header class="project-header">
-              <h3 class="project-name">{{ project.name }}</h3>
-              <div class="project-meta">
-                <span class="project-duration">{{ project.duration }}</span>
-                <span class="project-role">{{ project.role }}</span>
+    <!-- Skills Preview -->
+    <section class="skills-preview" aria-labelledby="skills-heading">
+      <div class="section-container">
+        <div class="section-header">
+          <h2 id="skills-heading" class="section-title">Kỹ Năng Chuyên Môn</h2>
+          <div class="section-line" aria-hidden="true"></div>
+          <p class="section-subtitle">Các công nghệ và kỹ năng tôi thành thạo</p>
+        </div>
+        
+        <div class="skills-grid">
+          <div 
+            v-for="skill in topSkills" 
+            :key="skill.name"
+            class="skill-card"
+          >
+            <div class="skill-icon">{{ getSkillIcon(skill.name) }}</div>
+            <div class="skill-info">
+              <h3 class="skill-name">{{ skill.name }}</h3>
+              <div class="skill-level">
+                <div class="skill-bar">
+                  <div 
+                    class="skill-progress"
+                    :style="{ width: skill.level + '%' }"
+                    :aria-label="`Mức độ thành thạo ${skill.level}%`"
+                  ></div>
+                </div>
+                <span class="skill-percentage">{{ skill.level }}%</span>
               </div>
-            </header>
-            
-            <p class="project-description">{{ project.description }}</p>
-            
-            <div class="project-features">
-              <h4>Tính năng chính:</h4>
-              <ul role="list">
-                <li v-for="feature in project.features" :key="feature" role="listitem">
-                  {{ feature }}
-                </li>
-              </ul>
-            </div>
-            
-            <div class="project-technologies">
-              <span 
-                v-for="tech in project.technologies" 
-                :key="tech"
-                class="tech-tag"
-              >
-                {{ tech }}
-              </span>
-            </div>
-
-            <div class="project-links">
-              <a 
-                v-if="project.links.demo"
-                :href="project.links.demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-link demo-link"
-                :aria-label="`Xem demo của dự án ${project.name}`"
-                @click.stop
-              >
-                <span>🚀</span> Demo
-              </a>
-              <a 
-                v-if="project.links.github"
-                :href="project.links.github"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-link github-link"
-                :aria-label="`Xem source code của dự án ${project.name} trên GitHub`"
-                @click.stop
-              >
-                <span>📂</span> Code
-              </a>
-              <a 
-                v-if="project.links.case_study"
-                :href="project.links.case_study"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="project-link case-study-link"
-                :aria-label="`Đọc case study của dự án ${project.name}`"
-                @click.stop
-              >
-                <span>📖</span> Case Study
-              </a>
             </div>
           </div>
-        </article>
+        </div>
+
+        <div class="section-cta">
+          <RouterLink to="/skills" class="view-all-btn">
+            <span>Xem Tất Cả Kỹ Năng</span>
+            <span class="btn-arrow">→</span>
+          </RouterLink>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script setup>
-import { onMounted, inject } from 'vue'
+import { onMounted, inject, computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { resumeData } from '@/data/resumeData.js'
-import SkillChart from '@/components/SkillChart.vue'
 
 // Destructure data
-const { personalInfo, experience, skills, projects } = resumeData
+const { personalInfo, skills, projects } = resumeData
 
 // Inject logger
 const logger = inject('logger')
 
+// Computed properties
+const featuredProjects = computed(() => {
+  return projects.slice(0, 3) // Show top 3 projects
+})
+
+const topSkills = computed(() => {
+  return skills
+    .filter(skill => skill.level >= 85) // Only high-level skills
+    .sort((a, b) => b.level - a.level)
+    .slice(0, 6) // Show top 6 skills
+})
+
 // Methods
 const handleImageError = (event) => {
-  // Fallback to a default professional avatar
+  // Optimized fallback image
   event.target.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
   logger?.warn('Avatar image failed to load', { 
     originalSrc: personalInfo.avatar,
@@ -298,19 +244,30 @@ const openProjectDemo = (demoUrl) => {
   }
 }
 
+const getSkillIcon = (skillName) => {
+  const icons = {
+    'Vue.js': '⚛️',
+    'React': '⚛️',
+    'JavaScript/ES6+': '💻',
+    'TypeScript': '📘',
+    'Tailwind CSS': '🎨',
+    'Node.js': '🟢'
+  }
+  return icons[skillName] || '🛠️'
+}
+
 // Lifecycle
 onMounted(() => {
   logger?.logPageView('/')
   logger?.info('HomePage mounted successfully', { 
-    experienceCount: experience.length,
-    skillsCount: skills.length,
-    projectsCount: projects.length
+    featuredProjectsCount: featuredProjects.value.length,
+    topSkillsCount: topSkills.value.length
   }, 'HomePage')
 })
 </script>
 
 <style scoped>
-/* Base styles with improved accessibility */
+/* Base styles with mobile-first approach */
 .home-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -327,57 +284,61 @@ onMounted(() => {
   bottom: 0;
   background: 
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(63, 94, 251, 0.2) 0%, transparent 50%);
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
 
-/* Focus styles for accessibility */
-*:focus {
-  outline: 3px solid #FC466B;
-  outline-offset: 2px;
-}
-
-/* Skip to content link for screen readers */
-.skip-link {
+/* Screen reader only content */
+.sr-only {
   position: absolute;
-  top: -40px;
-  left: 6px;
-  background: #FC466B;
-  color: white;
-  padding: 8px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 1001;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.skip-link:focus {
-  top: 6px;
-}
-
-/* Hero Section */
+/* Hero Section - Mobile First */
 .hero-section {
-  padding: 4rem 2rem;
+  padding: 5rem 1rem 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  position: relative;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  margin: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-content {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 3rem;
-  align-items: center;
-  max-width: 1200px;
+  position: relative;
+  z-index: 2;
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  border-radius: 30px;
-  padding: 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+}
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .avatar-container {
@@ -387,8 +348,8 @@ onMounted(() => {
 }
 
 .avatar {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.3);
@@ -421,10 +382,11 @@ onMounted(() => {
 
 .hero-text {
   color: white;
+  max-width: 600px;
 }
 
 .hero-name {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
@@ -435,32 +397,97 @@ onMounted(() => {
 }
 
 .hero-title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-summary {
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
   color: rgba(255, 255, 255, 0.85);
-  max-width: 600px;
 }
 
+/* CTA Buttons - Mobile Optimized */
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.cta-primary,
+.cta-secondary,
+.cta-tertiary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-height: 56px; /* Better touch target */
+  border: 2px solid transparent;
+}
+
+.cta-primary {
+  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(63, 94, 251, 0.4);
+}
+
+.cta-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.cta-tertiary {
+  background: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cta-primary:hover,
+.cta-primary:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(63, 94, 251, 0.5);
+}
+
+.cta-secondary:hover,
+.cta-secondary:focus,
+.cta-tertiary:hover,
+.cta-tertiary:focus {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.cta-icon {
+  font-size: 1.2rem;
+}
+
+/* Contact Info */
 .hero-contact {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  font-size: 0.95rem;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
-  font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -477,48 +504,62 @@ onMounted(() => {
 }
 
 .icon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   min-width: 1.5rem;
 }
 
-/* Social Links */
-.social-links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 255, 255, 0.1);
+/* Stats Section */
+.stats-section {
+  padding: 3rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  border-radius: 25px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
+}
+
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.social-link:hover,
-.social-link:focus {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(63, 94, 251, 0.3);
+.stat-item:hover {
+  transform: translateY(-5px);
 }
 
-.social-icon {
-  font-size: 1.1rem;
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
 }
 
 /* Section Styles */
-section {
-  padding: 4rem 2rem;
+.section-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 3rem 1rem;
 }
 
 .section-header {
@@ -527,7 +568,7 @@ section {
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: white;
   margin-bottom: 1rem;
@@ -535,186 +576,33 @@ section {
 }
 
 .section-line {
-  width: 100px;
+  width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 100%);
-  margin: 0 auto;
+  margin: 0 auto 1rem;
   border-radius: 2px;
 }
 
-/* Experience Timeline */
-.experience-timeline {
-  position: relative;
-  padding: 2rem 0;
-}
-
-.experience-timeline::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(180deg, #3F5EFB 0%, #FC466B 100%);
-  transform: translateX(-50%);
-}
-
-.experience-item {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  align-items: center;
-}
-
-.experience-item.reverse .experience-card {
-  grid-column: 3;
-}
-
-.experience-item:not(.reverse) .experience-card {
-  grid-column: 1;
-}
-
-.timeline-dot {
-  grid-column: 2;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(63, 94, 251, 0.5);
-  z-index: 2;
-}
-
-.experience-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
-  color: white;
-}
-
-.experience-card:hover,
-.experience-card:focus-within {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.experience-header {
-  margin-bottom: 1rem;
-}
-
-.experience-position {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #FC466B;
-}
-
-.experience-company {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
-
-.experience-duration {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.experience-location {
-  font-style: italic;
-}
-
-.experience-description {
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.experience-responsibilities,
-.experience-achievements {
-  margin-bottom: 1.5rem;
-}
-
-.experience-responsibilities h4,
-.experience-achievements h4 {
+.section-subtitle {
   font-size: 1rem;
-  margin-bottom: 0.75rem;
-  color: #3F5EFB;
-}
-
-.experience-responsibilities ul,
-.experience-achievements ul {
-  list-style: none;
-  padding: 0;
-}
-
-.experience-responsibilities li,
-.experience-achievements li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-.experience-responsibilities li::before {
-  content: '▶';
-  position: absolute;
-  left: 0;
-  color: #3F5EFB;
-  font-size: 0.8rem;
+/* Featured Projects */
+.featured-projects {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
-.experience-achievements li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #FC466B;
-  font-weight: bold;
-}
-
-.experience-technologies {
-  margin-top: 1rem;
-}
-
-.experience-technologies h4 {
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-  color: #3F5EFB;
-}
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tech-tag {
-  background: rgba(63, 94, 251, 0.3);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  border: 1px solid rgba(63, 94, 251, 0.5);
-}
-
-/* Projects Grid */
-.projects-grid {
+.projects-preview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
-.project-card {
+.project-preview-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   border-radius: 20px;
@@ -724,11 +612,12 @@ section {
   cursor: pointer;
 }
 
-.project-card:hover,
-.project-card:focus {
-  transform: translateY(-10px);
+.project-preview-card:hover,
+.project-preview-card:focus {
+  transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   background: rgba(255, 255, 255, 0.15);
+  outline: none;
 }
 
 .project-image {
@@ -744,8 +633,8 @@ section {
   transition: transform 0.3s ease;
 }
 
-.project-card:hover .project-image img,
-.project-card:focus .project-image img {
+.project-preview-card:hover .project-image img,
+.project-preview-card:focus .project-image img {
   transform: scale(1.1);
 }
 
@@ -763,224 +652,248 @@ section {
   transition: opacity 0.3s ease;
 }
 
-.project-card:hover .project-overlay,
-.project-card:focus .project-overlay {
+.project-preview-card:hover .project-overlay,
+.project-preview-card:focus .project-overlay {
   opacity: 1;
 }
 
-.view-project {
+.view-text {
   color: white;
   font-weight: 600;
   font-size: 1.1rem;
 }
 
-.project-content {
+.project-info {
   padding: 1.5rem;
   color: white;
 }
 
-.project-header {
-  margin-bottom: 1rem;
-}
-
 .project-name {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: #FC466B;
 }
 
-.project-meta {
-  display: flex;
-  gap: 1rem;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.project-description {
-  line-height: 1.6;
+.project-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.9);
 }
 
-.project-features {
-  margin-bottom: 1rem;
-}
-
-.project-features h4 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  color: #3F5EFB;
-}
-
-.project-features ul {
-  list-style: none;
-  padding: 0;
-}
-
-.project-features li {
-  position: relative;
-  padding-left: 1.2rem;
-  margin-bottom: 0.3rem;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-}
-
-.project-features li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #FC466B;
-}
-
-.project-technologies {
+.project-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
 }
 
-.project-links {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+.tech-badge {
+  background: rgba(63, 94, 251, 0.3);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(63, 94, 251, 0.5);
 }
 
-.project-link {
+/* Skills Preview */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.skill-card {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
-.demo-link {
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
-  color: white;
+.skill-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.github-link {
+.skill-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.skill-info {
+  flex: 1;
+}
+
+.skill-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.skill-level {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skill-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 100%);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+.skill-percentage {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FC466B;
+  min-width: 40px;
+}
+
+/* Section CTA */
+.section-cta {
+  text-align: center;
+}
+
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
   background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  min-height: 56px;
 }
 
-.case-study-link {
-  background: rgba(252, 70, 107, 0.2);
-  color: white;
-  border: 1px solid rgba(252, 70, 107, 0.5);
+.view-all-btn:hover,
+.view-all-btn:focus {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
-.project-link:hover,
-.project-link:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.btn-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
-  }
-  
-  .experience-timeline::before {
-    left: 2rem;
-  }
-  
-  .experience-item {
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-  }
-  
-  .experience-item .experience-card,
-  .experience-item.reverse .experience-card {
-    grid-column: 2;
-  }
-  
-  .timeline-dot {
-    grid-column: 1;
-  }
-
-  .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  }
+.view-all-btn:hover .btn-arrow,
+.view-all-btn:focus .btn-arrow {
+  transform: translateX(5px);
 }
 
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 2rem 1rem;
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .hero-main {
+    flex-direction: row;
+    text-align: left;
+    gap: 3rem;
   }
   
-  .hero-content {
-    padding: 2rem;
+  .hero-text {
+    flex: 1;
   }
   
   .hero-name {
-    font-size: 2rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .avatar {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  section {
-    padding: 2rem 1rem;
-  }
-
-  .social-links {
-    justify-content: center;
-  }
-
-  .hero-contact {
-    align-items: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-name {
-    font-size: 1.8rem;
+    font-size: 3rem;
   }
   
   .hero-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
   
-  .section-title {
-    font-size: 1.8rem;
+  .hero-summary {
+    font-size: 1.1rem;
   }
   
-  .experience-card,
-  .project-card {
-    padding: 1.5rem;
+  .hero-cta {
+    flex-direction: row;
+    max-width: none;
   }
+  
+  .hero-contact {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+  
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .projects-preview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .hero-section {
+    padding: 6rem 2rem 4rem;
+  }
+  
+  .section-container {
+    padding: 4rem 2rem;
+  }
+  
+  .projects-preview {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .hero-cta {
+    gap: 1.5rem;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 3px solid #FC466B;
+  outline-offset: 2px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .hero-content,
-  .experience-card,
-  .project-card {
+  .hero-background,
+  .stat-item,
+  .project-preview-card,
+  .skill-card {
     border: 2px solid white;
-  }
-  
-  .tech-tag,
-  .social-link {
-    border: 2px solid currentColor;
   }
 }
 
@@ -1006,12 +919,11 @@ section {
     color: black !important;
   }
   
-  .hero-content,
-  .experience-card,
-  .project-card {
+  .hero-background,
+  .stat-item,
+  .project-preview-card {
     background: white !important;
     border: 1px solid #ccc !important;
-    box-shadow: none !important;
   }
   
   .project-overlay,

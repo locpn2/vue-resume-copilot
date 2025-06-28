@@ -24,12 +24,18 @@
         </RouterLink>
       </div>
 
-      <!-- Mobile Menu Toggle -->
-      <div class="nav-toggle" @click="toggleMenu" v-log-click="'menu-toggle'">
-        <span class="bar" :class="{ active: isMenuOpen }"></span>
-        <span class="bar" :class="{ active: isMenuOpen }"></span>
-        <span class="bar" :class="{ active: isMenuOpen }"></span>
-      </div>
+      <!-- Mobile Menu Toggle - Improved hamburger -->
+      <button 
+        class="nav-toggle" 
+        @click="toggleMenu" 
+        v-log-click="'menu-toggle'"
+        :aria-label="isMenuOpen ? 'Đóng menu' : 'Mở menu'"
+        :aria-expanded="isMenuOpen"
+      >
+        <span class="hamburger-line" :class="{ active: isMenuOpen }"></span>
+        <span class="hamburger-line" :class="{ active: isMenuOpen }"></span>
+        <span class="hamburger-line" :class="{ active: isMenuOpen }"></span>
+      </button>
     </div>
   </nav>
 </template>
@@ -80,7 +86,7 @@ onMounted(() => {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -110,7 +116,7 @@ onMounted(() => {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .nav-link {
@@ -125,6 +131,7 @@ onMounted(() => {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  min-height: 44px; /* Improved touch target */
 }
 
 .nav-link::before {
@@ -159,32 +166,47 @@ onMounted(() => {
   font-size: 0.95rem;
 }
 
+/* Improved Hamburger Menu */
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: space-around;
+  width: 44px; /* Larger touch target */
+  height: 44px;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
-.bar {
-  width: 25px;
+.nav-toggle:hover,
+.nav-toggle:focus {
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.hamburger-line {
+  width: 28px;
   height: 3px;
   background: white;
-  margin: 3px 0;
-  transition: 0.3s;
   border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
 }
 
-.bar.active:nth-child(1) {
-  transform: rotate(-45deg) translate(-5px, 6px);
+.hamburger-line.active:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
 }
 
-.bar.active:nth-child(2) {
+.hamburger-line.active:nth-child(2) {
   opacity: 0;
+  transform: scale(0);
 }
 
-.bar.active:nth-child(3) {
-  transform: rotate(45deg) translate(-5px, -6px);
+.hamburger-line.active:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Mobile Styles */
@@ -211,6 +233,7 @@ onMounted(() => {
     padding-top: 2rem;
     gap: 1rem;
     transition: left 0.3s ease;
+    overflow-y: auto;
   }
   
   .nav-menu.active {
@@ -218,20 +241,28 @@ onMounted(() => {
   }
   
   .nav-link {
-    width: 80%;
+    width: 85%;
+    max-width: 300px;
     justify-content: center;
-    padding: 1rem;
+    padding: 1.25rem 1.5rem; /* Larger touch targets */
     font-size: 1.1rem;
+    border-radius: 15px;
+    min-height: 56px; /* Even larger for mobile */
   }
   
   .nav-icon {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+  
+  .nav-text {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .nav-container {
     height: 60px;
+    padding: 0 0.75rem;
   }
   
   .nav-menu {
@@ -241,6 +272,35 @@ onMounted(() => {
   
   .logo-link {
     font-size: 1.3rem;
+  }
+  
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .hamburger-line {
+    width: 24px;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .nav-toggle:focus {
+    outline: 3px solid white;
+  }
+  
+  .hamburger-line {
+    background: white;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .hamburger-line,
+  .nav-menu {
+    transition: none;
   }
 }
 </style>

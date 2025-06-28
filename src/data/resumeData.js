@@ -1,4 +1,4 @@
-// Dữ liệu CV mẫu cho Resume Copilot
+// Dữ liệu CV mẫu cho Resume Copilot - Optimized for performance
 export const resumeData = {
   personalInfo: {
     name: 'Nguyễn Văn A',
@@ -6,8 +6,9 @@ export const resumeData = {
     email: 'nguyenvana@example.com',
     phone: '+84 123 456 789',
     location: 'Hồ Chí Minh, Việt Nam',
-    avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop',
-    summary: 'Là một Frontend Developer với hơn 3 năm kinh nghiệm phát triển ứng dụng web hiện đại sử dụng Vue.js, React và các công nghệ tiên tiến khác. Tôi đam mê xây dựng các giao diện người dùng trực quan, tối ưu và thân thiện với người dùng, đồng thời luôn tìm kiếm cơ hội học hỏi và áp dụng công nghệ mới nhất.',
+    // Optimized image with compression parameters
+    avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop&dpr=2',
+    summary: 'Frontend Developer với 3+ năm kinh nghiệm phát triển ứng dụng web hiện đại. Chuyên sâu về Vue.js, React và các công nghệ tiên tiến, tập trung vào trải nghiệm người dùng tối ưu.',
     detailedSummary: 'Với kinh nghiệm 3+ năm trong lĩnh vực phát triển Frontend, tôi chuyên sâu về Vue.js ecosystem và có kinh nghiệm thực tế với React, TypeScript, và các công cụ build hiện đại. Tôi có khả năng chuyển đổi thiết kế UI/UX thành code chất lượng cao, tối ưu hóa hiệu suất ứng dụng và đảm bảo trải nghiệm người dùng tốt nhất trên mọi thiết bị.',
     socialLinks: {
       github: 'https://github.com/nguyenvana',
@@ -140,7 +141,7 @@ export const resumeData = {
     {
       id: 1,
       name: 'E-commerce Platform - VueShop',
-      description: 'Nền tảng thương mại điện tử đầy đủ tính năng với quản lý sản phẩm, giỏ hàng, thanh toán và admin dashboard. Hỗ trợ đa ngôn ngữ và responsive design.',
+      description: 'Nền tảng thương mại điện tử đầy đủ tính năng với quản lý sản phẩm, giỏ hàng, thanh toán và admin dashboard.',
       detailedDescription: 'Dự án e-commerce được xây dựng từ đầu với Vue.js 3, tích hợp payment gateway, quản lý inventory real-time và analytics dashboard. Sử dụng microservices architecture với Node.js backend.',
       technologies: ['Vue.js 3', 'Pinia', 'Vue Router', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'Stripe API'],
       features: [
@@ -156,7 +157,8 @@ export const resumeData = {
         github: 'https://github.com/nguyenvana/vueshop',
         case_study: 'https://nguyenvana.dev/projects/vueshop'
       },
-      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
+      // Optimized image with compression
+      image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       status: 'Completed',
       duration: '3 tháng',
       role: 'Full-stack Developer'
@@ -164,7 +166,7 @@ export const resumeData = {
     {
       id: 2,
       name: 'Task Management App - TaskFlow',
-      description: 'Ứng dụng quản lý công việc với tính năng real-time collaboration, drag & drop, notifications và team management. Tương tự như Trello nhưng với UX tối ưu hơn.',
+      description: 'Ứng dụng quản lý công việc với tính năng real-time collaboration, drag & drop, notifications và team management.',
       detailedDescription: 'TaskFlow là ứng dụng quản lý dự án được thiết kế để tăng productivity cho các team nhỏ. Sử dụng Socket.io cho real-time updates và drag-and-drop API cho trải nghiệm người dùng mượt mà.',
       technologies: ['React', 'Redux Toolkit', 'Socket.io', 'Express.js', 'PostgreSQL', 'JWT', 'Material-UI'],
       features: [
@@ -180,7 +182,7 @@ export const resumeData = {
         github: 'https://github.com/nguyenvana/taskflow',
         case_study: 'https://nguyenvana.dev/projects/taskflow'
       },
-      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       status: 'Completed',
       duration: '2 tháng',
       role: 'Frontend Lead'
@@ -188,7 +190,7 @@ export const resumeData = {
     {
       id: 3,
       name: 'Weather Dashboard - WeatherVue',
-      description: 'Dashboard thời tiết với dự báo 7 ngày, maps tương tác, charts và khả năng lưu địa điểm yêu thích. Sử dụng multiple weather APIs để đảm bảo độ chính xác.',
+      description: 'Dashboard thời tiết với dự báo 7 ngày, maps tương tác, charts và khả năng lưu địa điểm yêu thích.',
       detailedDescription: 'Ứng dụng thời tiết hiện đại với giao diện đẹp mắt, tích hợp OpenWeatherMap API và Mapbox. Có tính năng offline-first với service worker và PWA capabilities.',
       technologies: ['Vue.js 3', 'Composition API', 'Chart.js', 'Mapbox GL', 'Service Worker', 'IndexedDB', 'Vite PWA'],
       features: [
@@ -203,7 +205,7 @@ export const resumeData = {
         demo: 'https://weathervue-app.netlify.app',
         github: 'https://github.com/nguyenvana/weathervue'
       },
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       status: 'Completed',
       duration: '1 tháng',
       role: 'Solo Developer'
@@ -211,7 +213,7 @@ export const resumeData = {
     {
       id: 4,
       name: 'Portfolio Website - Personal Brand',
-      description: 'Website portfolio cá nhân với blog tích hợp, showcase projects và contact form. Tối ưu SEO và performance, đạt 100 điểm Lighthouse.',
+      description: 'Website portfolio cá nhân với blog tích hợp, showcase projects và contact form. Tối ưu SEO và performance.',
       detailedDescription: 'Portfolio website được xây dựng với Nuxt.js để tối ưu SEO, tích hợp headless CMS cho blog và contact form với email notifications. Sử dụng modern web technologies và best practices.',
       technologies: ['Nuxt.js', 'Vue.js 3', 'Tailwind CSS', 'Strapi CMS', 'Cloudinary', 'Netlify Forms'],
       features: [
@@ -226,7 +228,7 @@ export const resumeData = {
         demo: 'https://nguyenvana.dev',
         github: 'https://github.com/nguyenvana/portfolio'
       },
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
+      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
       status: 'Live',
       duration: '2 tuần',
       role: 'Designer & Developer'
