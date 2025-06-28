@@ -25,11 +25,11 @@
             <div class="hero-cta">
               <RouterLink to="/contact" class="cta-primary">
                 <span class="cta-icon">📧</span>
-                <span class="cta-text">Liên Hệ Ngay</span>
+                <span>Liên Hệ Ngay</span>
               </RouterLink>
               <RouterLink to="/projects" class="cta-secondary">
                 <span class="cta-icon">🚀</span>
-                <span class="cta-text">Xem Dự Án</span>
+                <span>Xem Dự Án</span>
               </RouterLink>
               <a 
                 :href="personalInfo.socialLinks.portfolio"
@@ -39,7 +39,7 @@
                 v-log-click="'portfolio-cta'"
               >
                 <span class="cta-icon">🌐</span>
-                <span class="cta-text">Portfolio</span>
+                <span>Portfolio</span>
               </a>
             </div>
 
@@ -454,7 +454,7 @@ onMounted(() => {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced CTA Buttons - Fixed Hover Effect */
+/* Enhanced CTA Buttons - Optimized Performance */
 .hero-cta {
   display: flex;
   flex-direction: column;
@@ -490,38 +490,38 @@ onMounted(() => {
   backface-visibility: hidden;
 }
 
-/* Fixed Primary CTA Button - No Blur on Text/Icon */
+/* Enhanced Primary CTA Button - Matching Outline */
 .cta-primary {
   background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  /* Add matching outline effect */
   box-shadow: 
     0 4px 15px rgba(63, 94, 251, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
-}
-
-/* Fixed hover effect - only background changes, text/icon stay clear */
-.cta-primary:hover,
-.cta-primary:focus {
-  transform: translate3d(0, -3px, 0);
-  background: linear-gradient(135deg, #2a4de0 0%, #e63946 50%, #e91e63 100%);
-  box-shadow: 
-    0 8px 25px rgba(63, 94, 251, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-  /* Ensure text and icon remain crisp */
-  backdrop-filter: none;
-}
-
-/* Ensure text and icon elements don't get blurred */
-.cta-primary .cta-icon,
-.cta-primary .cta-text {
+    inset 0 0 0 2px rgba(255, 255, 255, 0.2);
   position: relative;
-  z-index: 2;
-  /* Prevent any blur effects */
-  backdrop-filter: none;
-  filter: none;
+}
+
+/* Glassmorphism overlay for blur effect */
+.cta-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 23px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cta-primary:hover::before,
+.cta-primary:focus::before {
+  opacity: 1;
 }
 
 .cta-secondary {
@@ -542,6 +542,16 @@ onMounted(() => {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* Enhanced hover effects with blur */
+.cta-primary:hover,
+.cta-primary:focus {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 
+    0 8px 25px rgba(63, 94, 251, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
 .cta-secondary:hover,
 .cta-secondary:focus,
 .cta-tertiary:hover,
@@ -555,10 +565,6 @@ onMounted(() => {
 
 .cta-icon {
   font-size: 1.2rem;
-}
-
-.cta-text {
-  font-size: 1rem;
 }
 
 /* Contact Info */
@@ -925,34 +931,34 @@ onMounted(() => {
   gap: 1rem;
 }
 
-/* Enhanced Skill Bar with Project Colors */
+/* Enhanced Skill Bar with High Contrast Colors */
 .skill-bar {
   flex: 1;
   height: 8px;
-  /* Updated background to match project theme */
-  background: rgba(255, 255, 255, 0.15);
+  /* Updated background for better contrast */
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   overflow: hidden;
   /* Enhanced shadow for depth */
   box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
     0 1px 2px rgba(255, 255, 255, 0.1);
   /* Add subtle border for definition */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .skill-progress {
   height: 100%;
-  /* Updated with project's gradient colors */
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  /* Updated with high contrast gradient */
+  background: linear-gradient(90deg, #00FF87 0%, #60EFFF 50%, #FFD700 100%);
   border-radius: 10px;
   transition: width 1s ease-in-out;
   position: relative;
-  /* Enhanced glow effect matching project colors */
+  /* Enhanced glow effect */
   box-shadow: 
-    0 0 10px rgba(63, 94, 251, 0.6),
-    0 0 20px rgba(252, 70, 107, 0.4),
-    0 0 30px rgba(240, 147, 251, 0.3);
+    0 0 10px rgba(0, 255, 135, 0.6),
+    0 0 20px rgba(96, 239, 255, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.3);
   /* Add shimmer animation */
   animation: skillProgressGlow 2s ease-in-out infinite alternate;
 }
@@ -960,15 +966,15 @@ onMounted(() => {
 @keyframes skillProgressGlow {
   0% { 
     box-shadow: 
-      0 0 10px rgba(63, 94, 251, 0.6),
-      0 0 20px rgba(252, 70, 107, 0.4),
-      0 0 30px rgba(240, 147, 251, 0.3);
+      0 0 10px rgba(0, 255, 135, 0.6),
+      0 0 20px rgba(96, 239, 255, 0.4),
+      0 0 30px rgba(255, 215, 0, 0.3);
   }
   100% { 
     box-shadow: 
-      0 0 15px rgba(63, 94, 251, 0.8),
-      0 0 25px rgba(252, 70, 107, 0.6),
-      0 0 35px rgba(240, 147, 251, 0.5);
+      0 0 15px rgba(0, 255, 135, 0.8),
+      0 0 25px rgba(96, 239, 255, 0.6),
+      0 0 35px rgba(255, 215, 0, 0.5);
   }
 }
 
@@ -1150,7 +1156,7 @@ onMounted(() => {
   }
   
   .skill-progress {
-    background: linear-gradient(90deg, #0066FF 0%, #FF0066 50%, #FF6600 100%);
+    background: linear-gradient(90deg, #00FF00 0%, #FFFF00 50%, #FF0000 100%);
   }
   
   .section-line {
