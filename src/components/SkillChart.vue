@@ -154,35 +154,35 @@ onMounted(() => {
   font-size: 0.9rem;
 }
 
-/* Enhanced Skill Bar with High Contrast Colors */
+/* Updated Skill Bar with Project Colors */
 .skill-bar {
   width: 100%;
   height: 10px;
-  /* Updated background for better contrast */
-  background: rgba(0, 0, 0, 0.4);
+  /* Updated background to match project theme */
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   /* Enhanced shadow for depth */
   box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2),
     0 1px 2px rgba(255, 255, 255, 0.1);
   /* Add subtle border for definition */
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .skill-progress {
   height: 100%;
-  /* Updated with high contrast gradient */
-  background: linear-gradient(90deg, #00FF87 0%, #60EFFF 30%, #FFD700 70%, #FF6B35 100%);
+  /* Updated with project's gradient colors */
+  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   border-radius: 10px;
   transition: width 1.5s ease-in-out;
   position: relative;
-  /* Enhanced glow effect for better visibility */
+  /* Enhanced glow effect matching project colors */
   box-shadow: 
-    0 0 12px rgba(0, 255, 135, 0.7),
-    0 0 24px rgba(96, 239, 255, 0.5),
-    0 0 36px rgba(255, 215, 0, 0.4);
+    0 0 12px rgba(63, 94, 251, 0.6),
+    0 0 24px rgba(252, 70, 107, 0.4),
+    0 0 36px rgba(240, 147, 251, 0.3);
   /* Add shimmer animation */
   animation: skillBarGlow 3s ease-in-out infinite alternate;
 }
@@ -190,15 +190,15 @@ onMounted(() => {
 @keyframes skillBarGlow {
   0% { 
     box-shadow: 
-      0 0 12px rgba(0, 255, 135, 0.7),
-      0 0 24px rgba(96, 239, 255, 0.5),
-      0 0 36px rgba(255, 215, 0, 0.4);
+      0 0 12px rgba(63, 94, 251, 0.6),
+      0 0 24px rgba(252, 70, 107, 0.4),
+      0 0 36px rgba(240, 147, 251, 0.3);
   }
   100% { 
     box-shadow: 
-      0 0 18px rgba(0, 255, 135, 0.9),
-      0 0 30px rgba(96, 239, 255, 0.7),
-      0 0 42px rgba(255, 215, 0, 0.6);
+      0 0 18px rgba(63, 94, 251, 0.8),
+      0 0 30px rgba(252, 70, 107, 0.6),
+      0 0 42px rgba(240, 147, 251, 0.5);
   }
 }
 
@@ -241,7 +241,7 @@ onMounted(() => {
   }
   
   .skill-progress {
-    background: linear-gradient(90deg, #00FF00 0%, #FFFF00 50%, #FF0000 100%);
+    background: linear-gradient(90deg, #0066FF 0%, #FF0066 50%, #FF6600 100%);
     box-shadow: none;
   }
 }
