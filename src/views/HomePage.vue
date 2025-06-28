@@ -266,7 +266,7 @@ onMounted(() => {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
-  overflow-x: hidden; /* Vẫn giữ để tránh lỗi tràn ngang không mong muốn */
+  overflow-x: hidden; /* Giữ lại thuộc tính này nếu không muốn thanh cuộn ngang xuất hiện */
 }
 
 .home-page::before {
@@ -298,14 +298,12 @@ onMounted(() => {
 
 /* Hero Section - Mobile First */
 .hero-section {
-  padding: 5rem 1.5rem 3rem; /* Tăng padding ngang để tạo khoảng trống */
+  padding: 5rem 1rem 3rem; 
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   position: relative;
-  /* Đảm bảo nội dung không tràn khi bàn phím ảo bật lên trên thiết bị di động */
-  min-height: calc(100vh - var(--navbar-height, 0px)); 
 }
 
 .hero-background {
@@ -324,14 +322,17 @@ onMounted(() => {
 .hero-content {
   position: relative;
   z-index: 2;
-  width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng có sẵn */
-  max-width: 1200px;
-  margin: 0 auto; /* Căn giữa nội dung */
+  width: 100%;
+  /* Điều chỉnh max-width cho màn hình 1280px */
+  /* 80% của 1280px là 1024px */
+  max-width: 1024px; 
+  margin: 0 auto; /* Căn giữa */
+  padding: 0 1rem; /* Thêm padding ngang để nội dung không chạm rìa trên mobile */
 }
 
 .hero-main {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Mặc định là cột trên mobile */
   align-items: center;
   text-align: center;
   gap: 2rem;
@@ -342,6 +343,9 @@ onMounted(() => {
   position: relative;
   display: flex;
   justify-content: center;
+  /* Trên mobile, avatar-container chiếm toàn bộ chiều rộng có sẵn trước khi flex-direction thay đổi */
+  width: 100%; 
+  max-width: 150px; /* Giới hạn kích thước ảnh trên mobile */
 }
 
 .avatar {
@@ -379,7 +383,7 @@ onMounted(() => {
 
 .hero-text {
   color: white;
-  max-width: 600px;
+  /* max-width: 600px; */ /* Sẽ được điều chỉnh trong media query */
 }
 
 .hero-name {
@@ -414,7 +418,9 @@ onMounted(() => {
   gap: 1rem;
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 400px; 
+  margin-left: auto; 
+  margin-right: auto; 
 }
 
 .cta-primary,
@@ -430,7 +436,7 @@ onMounted(() => {
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
-  min-height: 56px; /* Better touch target */
+  min-height: 56px; 
   border: 2px solid transparent;
 }
 
@@ -513,9 +519,9 @@ onMounted(() => {
 }
 
 .stats-container {
-  max-width: 1200px;
+  max-width: 1024px; /* Điều chỉnh max-width giống hero-content */
   margin: 0 auto;
-  padding: 0 1.5rem; /* Thêm padding ngang cho container thống kê */
+  padding: 0 1rem; 
 }
 
 .stats-grid {
@@ -555,9 +561,9 @@ onMounted(() => {
 
 /* Section Styles */
 .section-container {
-  max-width: 1200px;
+  max-width: 1024px; /* Điều chỉnh max-width giống hero-content */
   margin: 0 auto;
-  padding: 3rem 1.5rem; /* Thêm padding ngang cho các section container */
+  padding: 3rem 1rem; 
 }
 
 .section-header {
@@ -805,19 +811,28 @@ onMounted(() => {
 
 /* Tablet Styles */
 @media (min-width: 768px) {
-  .hero-section {
-    padding: 5rem 2rem 3rem; /* Điều chỉnh padding trên tablet */
-  }
-  
   .hero-main {
     flex-direction: row;
     text-align: left;
     gap: 3rem;
-    padding: 2rem 0; /* Giữ padding bên trong hero-main */
   }
   
   .hero-text {
-    flex: 1;
+    flex: 1; /* Cho phép hero-text mở rộng */
+    max-width: 80%; /* Để hero-text chiếm tối đa 80% */
+  }
+  
+  .avatar-container {
+    width: 20%; /* avatar-container chiếm 20% chiều rộng của hero-main */
+    max-width: 200px; /* Giữ kích thước avatar giới hạn */
+    flex-shrink: 0; /* Ngăn avatar-container co lại */
+    /* Loại bỏ justify-content: center; để avatar căn trái nếu cần */
+    justify-content: flex-start; 
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
   }
   
   .hero-name {
@@ -835,6 +850,9 @@ onMounted(() => {
   .hero-cta {
     flex-direction: row;
     max-width: none;
+    justify-content: flex-start; 
+    margin-left: 0; 
+    margin-right: 0; 
   }
   
   .hero-contact {
@@ -843,26 +861,16 @@ onMounted(() => {
     gap: 2rem;
   }
   
-  .avatar {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .stats-container {
-    padding: 0 2rem; /* Điều chỉnh padding trên tablet */
-  }
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
   
   .projects-preview {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem; /* Tăng khoảng cách giữa các dự án */
   }
   
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem; /* Tăng khoảng cách giữa các kỹ năng */
   }
 }
 
@@ -872,18 +880,16 @@ onMounted(() => {
     padding: 6rem 2rem 4rem;
   }
   
+  .section-container {
+    padding: 4rem 2rem;
+  }
+  
   .projects-preview {
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem; /* Tăng khoảng cách trên desktop */
   }
   
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem; /* Tăng khoảng cách trên desktop */
-  }
-
-  .section-container {
-    padding: 4rem 2rem; /* Giữ padding này cho desktop */
   }
   
   .hero-cta {
