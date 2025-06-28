@@ -367,6 +367,7 @@ onMounted(() => {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 6rem 2rem 2rem;
   position: relative;
+  width: 100%;
 }
 
 .contact-page::before {
@@ -384,8 +385,8 @@ onMounted(() => {
 }
 
 .page-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .page-header {
@@ -412,16 +413,19 @@ onMounted(() => {
 .page-subtitle {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Contact Content */
+/* Contact Content - Full width */
 .contact-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 4rem;
+  margin-bottom: 4rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 4rem;
 }
 
@@ -698,13 +702,16 @@ onMounted(() => {
   line-height: 1.5;
 }
 
-/* FAQ Section */
+/* FAQ Section - Full width */
 .faq-section {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   border-radius: 24px;
   padding: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .faq-grid {
@@ -744,6 +751,36 @@ onMounted(() => {
 }
 
 /* Responsive Design */
+@media (min-width: 768px) {
+  .page-container {
+    padding: 0 2rem;
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-page {
+    padding: 6rem 3rem 2rem;
+  }
+  
+  .page-container {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .contact-page {
+    padding: 6rem 4rem 2rem;
+  }
+  
+  .page-container {
+    padding: 0 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .contact-page {
     padding: 4rem 1rem 2rem;

@@ -261,12 +261,12 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Base styles with mobile-first approach */
+/* Base styles with mobile-first approach - Full width */
 .home-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
-  overflow-x: hidden; /* Giữ lại thuộc tính này nếu không muốn thanh cuộn ngang xuất hiện */
+  width: 100%;
 }
 
 .home-page::before {
@@ -296,14 +296,15 @@ onMounted(() => {
   border: 0;
 }
 
-/* Hero Section - Mobile First */
+/* Hero Section - Full width */
 .hero-section {
-  padding: 5rem 1rem 3rem; 
+  padding: 5rem 2rem 3rem; 
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   position: relative;
+  width: 100%;
 }
 
 .hero-background {
@@ -323,29 +324,25 @@ onMounted(() => {
   position: relative;
   z-index: 2;
   width: 100%;
-  /* Điều chỉnh max-width cho màn hình 1280px */
-  /* 80% của 1280px là 1024px */
-  max-width: 1024px; 
-  margin: 0 auto; /* Căn giữa */
-  padding: 0 1rem; /* Thêm padding ngang để nội dung không chạm rìa trên mobile */
+  padding: 0 2rem;
 }
 
 .hero-main {
   display: flex;
-  flex-direction: column; /* Mặc định là cột trên mobile */
+  flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 2rem;
   padding: 2rem;
+  width: 100%;
 }
 
 .avatar-container {
   position: relative;
   display: flex;
   justify-content: center;
-  /* Trên mobile, avatar-container chiếm toàn bộ chiều rộng có sẵn trước khi flex-direction thay đổi */
   width: 100%; 
-  max-width: 150px; /* Giới hạn kích thước ảnh trên mobile */
+  max-width: 150px;
 }
 
 .avatar {
@@ -383,7 +380,7 @@ onMounted(() => {
 
 .hero-text {
   color: white;
-  /* max-width: 600px; */ /* Sẽ được điều chỉnh trong media query */
+  width: 100%;
 }
 
 .hero-name {
@@ -511,23 +508,25 @@ onMounted(() => {
   min-width: 1.5rem;
 }
 
-/* Stats Section */
+/* Stats Section - Full width */
 .stats-section {
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .stats-container {
-  max-width: 1024px; /* Điều chỉnh max-width giống hero-content */
-  margin: 0 auto;
-  padding: 0 1rem; 
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .stat-item {
@@ -559,11 +558,10 @@ onMounted(() => {
   font-weight: 500;
 }
 
-/* Section Styles */
+/* Section Styles - Full width */
 .section-container {
-  max-width: 1024px; /* Điều chỉnh max-width giống hero-content */
-  margin: 0 auto;
-  padding: 3rem 1rem; 
+  width: 100%;
+  padding: 3rem 2rem;
 }
 
 .section-header {
@@ -593,10 +591,11 @@ onMounted(() => {
   line-height: 1.6;
 }
 
-/* Featured Projects */
+/* Featured Projects - Full width */
 .featured-projects {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 .projects-preview {
@@ -604,6 +603,9 @@ onMounted(() => {
   grid-template-columns: 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .project-preview-card {
@@ -702,12 +704,15 @@ onMounted(() => {
   border: 1px solid rgba(63, 94, 251, 0.5);
 }
 
-/* Skills Preview */
+/* Skills Preview - Full width */
 .skills-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .skill-card {
@@ -818,15 +823,13 @@ onMounted(() => {
   }
   
   .hero-text {
-    flex: 1; /* Cho phép hero-text mở rộng */
-    max-width: 80%; /* Để hero-text chiếm tối đa 80% */
+    flex: 1;
   }
   
   .avatar-container {
-    width: 20%; /* avatar-container chiếm 20% chiều rộng của hero-main */
-    max-width: 200px; /* Giữ kích thước avatar giới hạn */
-    flex-shrink: 0; /* Ngăn avatar-container co lại */
-    /* Loại bỏ justify-content: center; để avatar căn trái nếu cần */
+    width: auto;
+    max-width: 200px;
+    flex-shrink: 0;
     justify-content: flex-start; 
   }
 
@@ -877,11 +880,11 @@ onMounted(() => {
 /* Desktop Styles */
 @media (min-width: 1024px) {
   .hero-section {
-    padding: 6rem 2rem 4rem;
+    padding: 6rem 3rem 4rem;
   }
   
   .section-container {
-    padding: 4rem 2rem;
+    padding: 4rem 3rem;
   }
   
   .projects-preview {
@@ -894,6 +897,21 @@ onMounted(() => {
   
   .hero-cta {
     gap: 1.5rem;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+  .hero-section {
+    padding: 6rem 4rem 4rem;
+  }
+  
+  .section-container {
+    padding: 4rem 4rem;
+  }
+  
+  .stats-container {
+    padding: 0 4rem;
   }
 }
 

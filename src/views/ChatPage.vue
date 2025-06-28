@@ -29,11 +29,12 @@ onMounted(() => {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 6rem 2rem 2rem;
+  width: 100%;
 }
 
 .page-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .page-header {
@@ -66,5 +67,34 @@ onMounted(() => {
   text-align: center;
   color: white;
   font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .page-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chat-page {
+    padding: 6rem 3rem 2rem;
+  }
+  
+  .page-container {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .chat-page {
+    padding: 6rem 4rem 2rem;
+  }
+  
+  .page-container {
+    padding: 0 4rem;
+  }
 }
 </style>

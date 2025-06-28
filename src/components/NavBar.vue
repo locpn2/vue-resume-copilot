@@ -81,12 +81,12 @@ onMounted(() => {
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  width: 100%;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,7 +131,7 @@ onMounted(() => {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  min-height: 44px; /* Improved touch target */
+  min-height: 44px;
 }
 
 .nav-link::before {
@@ -171,7 +171,7 @@ onMounted(() => {
   display: none;
   flex-direction: column;
   justify-content: space-around;
-  width: 44px; /* Larger touch target */
+  width: 44px;
   height: 44px;
   background: transparent;
   border: none;
@@ -244,10 +244,10 @@ onMounted(() => {
     width: 85%;
     max-width: 300px;
     justify-content: center;
-    padding: 1.25rem 1.5rem; /* Larger touch targets */
+    padding: 1.25rem 1.5rem;
     font-size: 1.1rem;
     border-radius: 15px;
-    min-height: 56px; /* Even larger for mobile */
+    min-height: 56px;
   }
   
   .nav-icon {
@@ -256,6 +256,18 @@ onMounted(() => {
   
   .nav-text {
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .nav-container {
+    padding: 0 4rem;
   }
 }
 

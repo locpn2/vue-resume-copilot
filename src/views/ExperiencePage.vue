@@ -135,6 +135,7 @@ onMounted(() => {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 6rem 2rem 2rem;
   position: relative;
+  width: 100%;
 }
 
 .experience-page::before {
@@ -152,8 +153,8 @@ onMounted(() => {
 }
 
 .page-container {
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .page-header {
@@ -180,19 +181,20 @@ onMounted(() => {
 .page-subtitle {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
-/* Experience Timeline */
+/* Experience Timeline - Full width */
 .experience-timeline {
   position: relative;
   margin-bottom: 4rem;
+  width: 100%;
 }
 
 .experience-item {
   margin-bottom: 3rem;
+  width: 100%;
 }
 
 .experience-card {
@@ -204,6 +206,9 @@ onMounted(() => {
   transition: all 0.3s ease;
   color: white;
   position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .experience-card:hover,
@@ -387,7 +392,7 @@ onMounted(() => {
   opacity: 0.6;
 }
 
-/* Career Summary */
+/* Career Summary - Full width */
 .career-summary {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
@@ -395,6 +400,9 @@ onMounted(() => {
   padding: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .summary-title {
@@ -432,6 +440,32 @@ onMounted(() => {
 }
 
 /* Responsive Design */
+@media (min-width: 768px) {
+  .page-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .experience-page {
+    padding: 6rem 3rem 2rem;
+  }
+  
+  .page-container {
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .experience-page {
+    padding: 6rem 4rem 2rem;
+  }
+  
+  .page-container {
+    padding: 0 4rem;
+  }
+}
+
 @media (max-width: 768px) {
   .experience-page {
     padding: 4rem 1rem 2rem;
