@@ -154,21 +154,52 @@ onMounted(() => {
   font-size: 0.9rem;
 }
 
+/* Enhanced Skill Bar with High Contrast Colors */
 .skill-bar {
   width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 10px;
+  /* Updated background for better contrast */
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  /* Enhanced shadow for depth */
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(255, 255, 255, 0.1);
+  /* Add subtle border for definition */
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 100%);
+  /* Updated with high contrast gradient */
+  background: linear-gradient(90deg, #00FF87 0%, #60EFFF 30%, #FFD700 70%, #FF6B35 100%);
   border-radius: 10px;
-  transition: width 1s ease-in-out;
+  transition: width 1.5s ease-in-out;
   position: relative;
+  /* Enhanced glow effect for better visibility */
+  box-shadow: 
+    0 0 12px rgba(0, 255, 135, 0.7),
+    0 0 24px rgba(96, 239, 255, 0.5),
+    0 0 36px rgba(255, 215, 0, 0.4);
+  /* Add shimmer animation */
+  animation: skillBarGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes skillBarGlow {
+  0% { 
+    box-shadow: 
+      0 0 12px rgba(0, 255, 135, 0.7),
+      0 0 24px rgba(96, 239, 255, 0.5),
+      0 0 36px rgba(255, 215, 0, 0.4);
+  }
+  100% { 
+    box-shadow: 
+      0 0 18px rgba(0, 255, 135, 0.9),
+      0 0 30px rgba(96, 239, 255, 0.7),
+      0 0 42px rgba(255, 215, 0, 0.6);
+  }
 }
 
 .skill-progress::after {
@@ -178,8 +209,8 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+  animation: shimmer 2.5s infinite;
 }
 
 @keyframes shimmer {
@@ -199,6 +230,27 @@ onMounted(() => {
   .category-btn {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .skill-bar {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+  }
+  
+  .skill-progress {
+    background: linear-gradient(90deg, #00FF00 0%, #FFFF00 50%, #FF0000 100%);
+    box-shadow: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .skill-progress,
+  .skill-progress::after {
+    animation: none;
   }
 }
 </style>

@@ -690,13 +690,36 @@ onMounted(() => {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Enhanced Section Line with High Contrast Colors */
 .section-line {
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  /* Updated with high contrast colors for better visibility */
+  background: linear-gradient(90deg, #FFD700 0%, #FF6B35 50%, #00D4FF 100%);
   margin: 0 auto 1rem;
   border-radius: 2px;
-  box-shadow: 0 2px 10px rgba(63, 94, 251, 0.3);
+  /* Enhanced glow effect for better contrast */
+  box-shadow: 
+    0 2px 10px rgba(255, 215, 0, 0.6),
+    0 0 20px rgba(255, 107, 53, 0.4),
+    0 0 30px rgba(0, 212, 255, 0.3);
+  /* Add subtle animation for attention */
+  animation: sectionLineGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes sectionLineGlow {
+  0% { 
+    box-shadow: 
+      0 2px 10px rgba(255, 215, 0, 0.6),
+      0 0 20px rgba(255, 107, 53, 0.4),
+      0 0 30px rgba(0, 212, 255, 0.3);
+  }
+  100% { 
+    box-shadow: 
+      0 2px 15px rgba(255, 215, 0, 0.8),
+      0 0 25px rgba(255, 107, 53, 0.6),
+      0 0 35px rgba(0, 212, 255, 0.5);
+  }
 }
 
 .section-subtitle {
@@ -908,21 +931,51 @@ onMounted(() => {
   gap: 1rem;
 }
 
+/* Enhanced Skill Bar with High Contrast Colors */
 .skill-bar {
   flex: 1;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 8px;
+  /* Updated background for better contrast */
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  /* Enhanced shadow for depth */
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(255, 255, 255, 0.1);
+  /* Add subtle border for definition */
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  /* Updated with high contrast gradient */
+  background: linear-gradient(90deg, #00FF87 0%, #60EFFF 50%, #FFD700 100%);
   border-radius: 10px;
   transition: width 1s ease-in-out;
-  box-shadow: 0 0 10px rgba(63, 94, 251, 0.5);
+  position: relative;
+  /* Enhanced glow effect */
+  box-shadow: 
+    0 0 10px rgba(0, 255, 135, 0.6),
+    0 0 20px rgba(96, 239, 255, 0.4),
+    0 0 30px rgba(255, 215, 0, 0.3);
+  /* Add shimmer animation */
+  animation: skillProgressGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes skillProgressGlow {
+  0% { 
+    box-shadow: 
+      0 0 10px rgba(0, 255, 135, 0.6),
+      0 0 20px rgba(96, 239, 255, 0.4),
+      0 0 30px rgba(255, 215, 0, 0.3);
+  }
+  100% { 
+    box-shadow: 
+      0 0 15px rgba(0, 255, 135, 0.8),
+      0 0 25px rgba(96, 239, 255, 0.6),
+      0 0 35px rgba(255, 215, 0, 0.5);
+  }
 }
 
 .skill-percentage {
@@ -1096,6 +1149,19 @@ onMounted(() => {
   .skill-card {
     border: 2px solid white;
   }
+  
+  .skill-bar {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+  }
+  
+  .skill-progress {
+    background: linear-gradient(90deg, #00FF00 0%, #FFFF00 50%, #FF0000 100%);
+  }
+  
+  .section-line {
+    background: linear-gradient(90deg, #FFFF00 0%, #FF0000 50%, #00FFFF 100%);
+  }
 }
 
 /* Reduced motion support - Critical for Performance */
@@ -1109,7 +1175,9 @@ onMounted(() => {
   }
   
   .avatar-glow,
-  .home-page::before {
+  .home-page::before,
+  .section-line,
+  .skill-progress {
     animation: none;
   }
   
