@@ -261,23 +261,20 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Performance Optimized Glassmorphism Background */
+/* Glassmorphism Background - HomePage */
 .home-page {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  /* Optimized background for better scroll performance */
   background: 
-    linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  /* Remove background-attachment: fixed for better scroll performance */
-  background-size: 100% 100%;
-  /* GPU acceleration */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: auto;
+    linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(63, 94, 251, 0.3) 0%, transparent 50%);
+  background-attachment: fixed;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
 }
 
-/* Optimized background animation for smooth scrolling */
 .home-page::before {
   content: '';
   position: fixed;
@@ -286,25 +283,20 @@ onMounted(() => {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 25% 75%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 75% 25%, rgba(255, 20, 147, 0.15) 0%, transparent 50%);
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
+    radial-gradient(circle at 25% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(255, 20, 147, 0.2) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
-  /* Optimize animation performance */
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  /* Reduced animation intensity for better performance */
-  animation: backgroundShift 30s ease-in-out infinite;
+  animation: backgroundShift 20s ease-in-out infinite;
 }
 
-/* Optimized animation with transform instead of background-position */
 @keyframes backgroundShift {
   0%, 100% { 
-    transform: translateZ(0) scale(1);
+    background-position: 0% 50%, 25% 75%, 75% 25%; 
   }
   50% { 
-    transform: translateZ(0) scale(1.05);
+    background-position: 100% 50%, 75% 25%, 25% 75%; 
   }
 }
 
@@ -321,7 +313,7 @@ onMounted(() => {
   border: 0;
 }
 
-/* Hero Section - Performance Optimized */
+/* Hero Section - Enhanced Glassmorphism */
 .hero-section {
   padding: 5rem 2rem 3rem; 
   display: flex;
@@ -330,9 +322,6 @@ onMounted(() => {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  /* Performance optimization */
-  contain: layout style paint;
-  transform: translateZ(0);
 }
 
 .hero-background {
@@ -343,16 +332,13 @@ onMounted(() => {
   bottom: 0;
   background: 
     linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
   border-radius: 30px;
   margin: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  /* Performance optimization */
-  will-change: backdrop-filter;
-  transform: translateZ(0);
 }
 
 .hero-content {
@@ -390,14 +376,11 @@ onMounted(() => {
     0 10px 30px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
-  /* Performance optimization */
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .avatar:hover,
 .avatar:focus {
-  transform: translateZ(0) scale(1.05);
+  transform: scale(1.05);
 }
 
 .avatar-glow {
@@ -410,15 +393,12 @@ onMounted(() => {
   background: linear-gradient(45deg, #3F5EFB, #FC466B, #f093fb);
   opacity: 0.6;
   z-index: -1;
-  /* Optimized animation */
-  animation: pulse 4s ease-in-out infinite;
-  will-change: transform, opacity;
-  transform: translateZ(0);
+  animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: translateZ(0) scale(1); opacity: 0.6; }
-  50% { transform: translateZ(0) scale(1.05); opacity: 0.8; }
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.1); opacity: 0.8; }
 }
 
 .hero-text {
@@ -454,7 +434,7 @@ onMounted(() => {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced CTA Buttons - Optimized Performance */
+/* Enhanced CTA Buttons */
 .hero-cta {
   display: flex;
   flex-direction: column;
@@ -478,50 +458,18 @@ onMounted(() => {
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   min-height: 56px; 
   border: 2px solid transparent;
   backdrop-filter: blur(20px);
-  position: relative;
-  overflow: hidden;
-  /* Performance optimization */
-  will-change: transform, box-shadow;
-  transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
-/* Enhanced Primary CTA Button - Matching Outline */
 .cta-primary {
   background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   color: white;
-  border: 2px solid transparent;
-  /* Add matching outline effect */
   box-shadow: 
     0 4px 15px rgba(63, 94, 251, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 0 0 2px rgba(255, 255, 255, 0.2);
-  position: relative;
-}
-
-/* Glassmorphism overlay for blur effect */
-.cta-primary::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 23px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.cta-primary:hover::before,
-.cta-primary:focus::before {
-  opacity: 1;
+    0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .cta-secondary {
@@ -542,14 +490,12 @@ onMounted(() => {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Enhanced hover effects with blur */
 .cta-primary:hover,
 .cta-primary:focus {
-  transform: translate3d(0, -3px, 0);
+  transform: translateY(-3px);
   box-shadow: 
     0 8px 25px rgba(63, 94, 251, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+    0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .cta-secondary:hover,
@@ -557,7 +503,7 @@ onMounted(() => {
 .cta-tertiary:hover,
 .cta-tertiary:focus {
   background: rgba(255, 255, 255, 0.25);
-  transform: translate3d(0, -3px, 0);
+  transform: translateY(-3px);
   box-shadow: 
     0 8px 25px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -601,7 +547,7 @@ onMounted(() => {
   min-width: 1.5rem;
 }
 
-/* Enhanced Stats Section - Performance Optimized */
+/* Enhanced Stats Section */
 .stats-section {
   padding: 3rem 2rem;
   background: 
@@ -610,9 +556,6 @@ onMounted(() => {
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  /* Performance optimization */
-  will-change: backdrop-filter;
-  transform: translateZ(0);
 }
 
 .stats-container {
@@ -636,17 +579,14 @@ onMounted(() => {
   backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease;
   box-shadow: 
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  /* Performance optimization */
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .stat-item:hover {
-  transform: translate3d(0, -5px, 0);
+  transform: translateY(-5px);
   box-shadow: 
     0 8px 25px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -669,12 +609,10 @@ onMounted(() => {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced Section Styles - Performance Optimized */
+/* Enhanced Section Styles */
 .section-container {
   width: 100%;
   padding: 3rem 2rem;
-  /* Performance optimization */
-  contain: layout style;
 }
 
 .section-header {
@@ -690,36 +628,13 @@ onMounted(() => {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Enhanced Section Line with High Contrast Colors */
 .section-line {
   width: 80px;
   height: 4px;
-  /* Updated with high contrast colors for better visibility */
-  background: linear-gradient(90deg, #FFD700 0%, #FF6B35 50%, #00D4FF 100%);
+  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   margin: 0 auto 1rem;
   border-radius: 2px;
-  /* Enhanced glow effect for better contrast */
-  box-shadow: 
-    0 2px 10px rgba(255, 215, 0, 0.6),
-    0 0 20px rgba(255, 107, 53, 0.4),
-    0 0 30px rgba(0, 212, 255, 0.3);
-  /* Add subtle animation for attention */
-  animation: sectionLineGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes sectionLineGlow {
-  0% { 
-    box-shadow: 
-      0 2px 10px rgba(255, 215, 0, 0.6),
-      0 0 20px rgba(255, 107, 53, 0.4),
-      0 0 30px rgba(0, 212, 255, 0.3);
-  }
-  100% { 
-    box-shadow: 
-      0 2px 15px rgba(255, 215, 0, 0.8),
-      0 0 25px rgba(255, 107, 53, 0.6),
-      0 0 35px rgba(0, 212, 255, 0.5);
-  }
+  box-shadow: 0 2px 10px rgba(63, 94, 251, 0.3);
 }
 
 .section-subtitle {
@@ -729,7 +644,7 @@ onMounted(() => {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced Featured Projects - Performance Optimized */
+/* Enhanced Featured Projects */
 .featured-projects {
   background: 
     linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
@@ -737,9 +652,6 @@ onMounted(() => {
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  /* Performance optimization */
-  will-change: backdrop-filter;
-  transform: translateZ(0);
 }
 
 .projects-preview {
@@ -759,19 +671,16 @@ onMounted(() => {
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  /* Performance optimization */
-  will-change: transform, box-shadow;
-  transform: translateZ(0);
 }
 
 .project-preview-card:hover,
 .project-preview-card:focus {
-  transform: translate3d(0, -8px, 0);
+  transform: translateY(-8px);
   box-shadow: 
     0 20px 40px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -791,14 +700,11 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  /* Performance optimization */
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .project-preview-card:hover .project-image img,
 .project-preview-card:focus .project-image img {
-  transform: translateZ(0) scale(1.1);
+  transform: scale(1.1);
 }
 
 .project-overlay {
@@ -869,7 +775,7 @@ onMounted(() => {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Enhanced Skills Preview - Performance Optimized */
+/* Enhanced Skills Preview */
 .skills-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -890,17 +796,14 @@ onMounted(() => {
   border-radius: 15px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   box-shadow: 
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  /* Performance optimization */
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .skill-card:hover {
-  transform: translate3d(0, -3px, 0);
+  transform: translateY(-3px);
   background: 
     linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
   box-shadow: 
@@ -931,51 +834,21 @@ onMounted(() => {
   gap: 1rem;
 }
 
-/* Enhanced Skill Bar with High Contrast Colors */
 .skill-bar {
   flex: 1;
-  height: 8px;
-  /* Updated background for better contrast */
-  background: rgba(0, 0, 0, 0.3);
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   overflow: hidden;
-  /* Enhanced shadow for depth */
-  box-shadow: 
-    inset 0 2px 4px rgba(0, 0, 0, 0.3),
-    0 1px 2px rgba(255, 255, 255, 0.1);
-  /* Add subtle border for definition */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .skill-progress {
   height: 100%;
-  /* Updated with high contrast gradient */
-  background: linear-gradient(90deg, #00FF87 0%, #60EFFF 50%, #FFD700 100%);
+  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   border-radius: 10px;
   transition: width 1s ease-in-out;
-  position: relative;
-  /* Enhanced glow effect */
-  box-shadow: 
-    0 0 10px rgba(0, 255, 135, 0.6),
-    0 0 20px rgba(96, 239, 255, 0.4),
-    0 0 30px rgba(255, 215, 0, 0.3);
-  /* Add shimmer animation */
-  animation: skillProgressGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes skillProgressGlow {
-  0% { 
-    box-shadow: 
-      0 0 10px rgba(0, 255, 135, 0.6),
-      0 0 20px rgba(96, 239, 255, 0.4),
-      0 0 30px rgba(255, 215, 0, 0.3);
-  }
-  100% { 
-    box-shadow: 
-      0 0 15px rgba(0, 255, 135, 0.8),
-      0 0 25px rgba(96, 239, 255, 0.6),
-      0 0 35px rgba(255, 215, 0, 0.5);
-  }
+  box-shadow: 0 0 10px rgba(63, 94, 251, 0.5);
 }
 
 .skill-percentage {
@@ -986,7 +859,7 @@ onMounted(() => {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced Section CTA - Performance Optimized */
+/* Enhanced Section CTA */
 .section-cta {
   text-align: center;
 }
@@ -1004,21 +877,18 @@ onMounted(() => {
   color: white;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   min-height: 56px;
   box-shadow: 
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  /* Performance optimization */
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .view-all-btn:hover,
 .view-all-btn:focus {
   background: 
     linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-  transform: translate3d(0, -3px, 0);
+  transform: translateY(-3px);
   box-shadow: 
     0 8px 25px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -1149,22 +1019,9 @@ onMounted(() => {
   .skill-card {
     border: 2px solid white;
   }
-  
-  .skill-bar {
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid white;
-  }
-  
-  .skill-progress {
-    background: linear-gradient(90deg, #00FF00 0%, #FFFF00 50%, #FF0000 100%);
-  }
-  
-  .section-line {
-    background: linear-gradient(90deg, #FFFF00 0%, #FF0000 50%, #00FFFF 100%);
-  }
 }
 
-/* Reduced motion support - Critical for Performance */
+/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1175,14 +1032,8 @@ onMounted(() => {
   }
   
   .avatar-glow,
-  .home-page::before,
-  .section-line,
-  .skill-progress {
+  .home-page::before {
     animation: none;
-  }
-  
-  html {
-    scroll-behavior: auto !important;
   }
 }
 
