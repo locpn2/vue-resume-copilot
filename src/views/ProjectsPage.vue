@@ -231,7 +231,6 @@ onMounted(() => {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 6rem 2rem 2rem;
   position: relative;
-  width: 100%;
 }
 
 .projects-page::before {
