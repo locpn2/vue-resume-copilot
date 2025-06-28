@@ -1,6 +1,5 @@
 <template>
   <div class="home-page">
-    <!-- Hero Section with CTA -->
     <section class="hero-section" role="banner">
       <div class="hero-background" aria-hidden="true"></div>
       <div class="hero-content">
@@ -23,7 +22,6 @@
             <h2 class="hero-title">{{ personalInfo.title }}</h2>
             <p class="hero-summary">{{ personalInfo.summary }}</p>
             
-            <!-- Call to Action Buttons -->
             <div class="hero-cta">
               <RouterLink to="/contact" class="cta-primary">
                 <span class="cta-icon">📧</span>
@@ -45,7 +43,6 @@
               </a>
             </div>
 
-            <!-- Quick Contact Info -->
             <div class="hero-contact" role="list">
               <div class="contact-item" role="listitem">
                 <span class="icon" aria-label="Email">📧</span>
@@ -77,7 +74,6 @@
       </div>
     </section>
 
-    <!-- Quick Stats Section -->
     <section class="stats-section" aria-labelledby="stats-heading">
       <div class="stats-container">
         <h2 id="stats-heading" class="sr-only">Thống kê nhanh</h2>
@@ -102,7 +98,6 @@
       </div>
     </section>
 
-    <!-- Featured Projects Preview -->
     <section class="featured-projects" aria-labelledby="featured-heading">
       <div class="section-container">
         <div class="section-header">
@@ -161,7 +156,6 @@
       </div>
     </section>
 
-    <!-- Skills Preview -->
     <section class="skills-preview" aria-labelledby="skills-heading">
       <div class="section-container">
         <div class="section-header">
@@ -272,7 +266,7 @@ onMounted(() => {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Vẫn giữ để tránh lỗi tràn ngang không mong muốn */
 }
 
 .home-page::before {
@@ -304,12 +298,14 @@ onMounted(() => {
 
 /* Hero Section - Mobile First */
 .hero-section {
-  padding: 5rem 1rem 3rem;
+  padding: 5rem 1.5rem 3rem; /* Tăng padding ngang để tạo khoảng trống */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   position: relative;
+  /* Đảm bảo nội dung không tràn khi bàn phím ảo bật lên trên thiết bị di động */
+  min-height: calc(100vh - var(--navbar-height, 0px)); 
 }
 
 .hero-background {
@@ -328,8 +324,9 @@ onMounted(() => {
 .hero-content {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng có sẵn */
   max-width: 1200px;
+  margin: 0 auto; /* Căn giữa nội dung */
 }
 
 .hero-main {
@@ -518,6 +515,7 @@ onMounted(() => {
 .stats-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5rem; /* Thêm padding ngang cho container thống kê */
 }
 
 .stats-grid {
@@ -559,7 +557,7 @@ onMounted(() => {
 .section-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 3rem 1rem;
+  padding: 3rem 1.5rem; /* Thêm padding ngang cho các section container */
 }
 
 .section-header {
@@ -807,10 +805,15 @@ onMounted(() => {
 
 /* Tablet Styles */
 @media (min-width: 768px) {
+  .hero-section {
+    padding: 5rem 2rem 3rem; /* Điều chỉnh padding trên tablet */
+  }
+  
   .hero-main {
     flex-direction: row;
     text-align: left;
     gap: 3rem;
+    padding: 2rem 0; /* Giữ padding bên trong hero-main */
   }
   
   .hero-text {
@@ -845,16 +848,21 @@ onMounted(() => {
     height: 200px;
   }
   
+  .stats-container {
+    padding: 0 2rem; /* Điều chỉnh padding trên tablet */
+  }
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
   
   .projects-preview {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem; /* Tăng khoảng cách giữa các dự án */
   }
   
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; /* Tăng khoảng cách giữa các kỹ năng */
   }
 }
 
@@ -864,16 +872,18 @@ onMounted(() => {
     padding: 6rem 2rem 4rem;
   }
   
-  .section-container {
-    padding: 4rem 2rem;
-  }
-  
   .projects-preview {
     grid-template-columns: repeat(3, 1fr);
+    gap: 3rem; /* Tăng khoảng cách trên desktop */
   }
   
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem; /* Tăng khoảng cách trên desktop */
+  }
+
+  .section-container {
+    padding: 4rem 2rem; /* Giữ padding này cho desktop */
   }
   
   .hero-cta {
