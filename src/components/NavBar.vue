@@ -288,4 +288,5 @@ import { RouterLink } from 'vue-router'
   .nav-menu {
     transition: none;
   }
+}
 </style>
