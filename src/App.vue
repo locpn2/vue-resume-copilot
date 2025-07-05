@@ -21,6 +21,8 @@ onMounted(() => {
     </div>
   </header>
 
+  <RouterView />
+</template>
 <style>
 /* CSS Reset và Base Styles - Optimized */
 * {
