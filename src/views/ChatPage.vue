@@ -29,13 +29,13 @@
 </template>
 
 <script setup>
-import { onMounted, inject } from 'vue'
-
-const logger = inject('logger')
+import ChatSuggestion from '../components/ChatSuggestion.vue'
+import { chatSuggestions } from '../data.js'
+import logger from '../utils/logger.js'
+import { onMounted } from 'vue'
 
 onMounted(() => {
-  logger?.logPageView('/chat-ai')
-  logger?.info('ChatPage mounted', {}, 'ChatPage')
+  logger.info('ChatPage mounted')
 })
 </script>
 

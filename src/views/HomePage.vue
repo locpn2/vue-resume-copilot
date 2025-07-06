@@ -2,11 +2,13 @@
   <div class="home-page">
     <section class="hero-section" role="banner">
       <div class="hero-background" aria-hidden="true"></div>
+    <section class="hero-section" role="banner">
+      <div class="hero-background" aria-hidden="true"></div>
       <div class="hero-content">
         <div class="hero-main">
           <div class="avatar-container">
-            <img 
-              :src="personalInfo.avatar" 
+            <img
+              :src="personalInfo.avatar"
               :alt="`Ảnh đại diện của ${personalInfo.name} - ${personalInfo.title}`"
               class="avatar"
               @error="handleImageError"
@@ -16,12 +18,12 @@
             />
             <div class="avatar-glow" aria-hidden="true"></div>
           </div>
-          
+
           <div class="hero-text">
             <h1 class="hero-name">{{ personalInfo.name }}</h1>
             <h2 class="hero-title">{{ personalInfo.title }}</h2>
             <p class="hero-summary">{{ personalInfo.summary }}</p>
-            
+
             <div class="hero-cta">
               <RouterLink to="/contact" class="cta-primary">
                 <span class="cta-icon">📧</span>
@@ -31,7 +33,7 @@
                 <span class="cta-icon">🚀</span>
                 <span>Xem Dự Án</span>
               </RouterLink>
-              <a 
+              <a
                 :href="personalInfo.socialLinks.portfolio"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -46,7 +48,7 @@
             <div class="hero-contact" role="list">
               <div class="contact-item" role="listitem">
                 <span class="icon" aria-label="Email">📧</span>
-                <a 
+                <a
                   :href="`mailto:${personalInfo.email}`"
                   class="contact-link"
                   :aria-label="`Gửi email đến ${personalInfo.email}`"
@@ -56,7 +58,7 @@
               </div>
               <div class="contact-item" role="listitem">
                 <span class="icon" aria-label="Số điện thoại">📱</span>
-                <a 
+                <a
                   :href="`tel:${personalInfo.phone}`"
                   class="contact-link"
                   :aria-label="`Gọi điện đến ${personalInfo.phone}`"
@@ -93,6 +95,25 @@
           <div class="stat-item">
             <div class="stat-number">100%</div>
             <div class="stat-label">Khách hàng hài lòng</div>
+    <section class="stats-section" aria-labelledby="stats-heading">
+      <div class="stats-container">
+        <h2 id="stats-heading" class="sr-only">Thống kê nhanh</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Năm kinh nghiệm</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ projects.length }}</div>
+            <div class="stat-label">Dự án hoàn thành</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{ skills.length }}+</div>
+            <div class="stat-label">Kỹ năng chuyên môn</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Khách hàng hài lòng</div>
           </div>
         </div>
       </div>
@@ -105,10 +126,10 @@
           <div class="section-line" aria-hidden="true"></div>
           <p class="section-subtitle">Một số dự án tiêu biểu tôi đã thực hiện</p>
         </div>
-        
+
         <div class="projects-preview">
-          <article 
-            v-for="project in featuredProjects" 
+          <article
+            v-for="project in featuredProjects"
             :key="project.id"
             class="project-preview-card"
             @click="openProjectDemo(project.links.demo)"
@@ -119,8 +140,8 @@
             :aria-label="`Xem chi tiết dự án ${project.name}`"
           >
             <div class="project-image">
-              <img 
-                :src="project.image" 
+              <img
+                :src="project.image"
                 :alt="`Hình ảnh minh họa dự án ${project.name} - ${project.description}`"
                 loading="lazy"
                 width="300"
@@ -130,13 +151,13 @@
                 <span class="view-text">Xem Chi Tiết</span>
               </div>
             </div>
-            
+
             <div class="project-info">
               <h3 class="project-name">{{ project.name }}</h3>
               <p class="project-desc">{{ project.description.substring(0, 100) }}...</p>
               <div class="project-tech">
-                <span 
-                  v-for="tech in project.technologies.slice(0, 3)" 
+                <span
+                  v-for="tech in project.technologies.slice(0, 3)"
                   :key="tech"
                   class="tech-badge"
                 >
@@ -163,10 +184,10 @@
           <div class="section-line" aria-hidden="true"></div>
           <p class="section-subtitle">Các công nghệ và kỹ năng tôi thành thạo</p>
         </div>
-        
+
         <div class="skills-grid">
-          <div 
-            v-for="skill in topSkills" 
+          <div
+            v-for="skill in topSkills"
             :key="skill.name"
             class="skill-card"
           >
@@ -175,7 +196,7 @@
               <h3 class="skill-name">{{ skill.name }}</h3>
               <div class="skill-level">
                 <div class="skill-bar">
-                  <div 
+                  <div
                     class="skill-progress"
                     :style="{ width: skill.level + '%' }"
                     :aria-label="`Mức độ thành thạo ${skill.level}%`"
@@ -201,9 +222,12 @@
 <script setup>
 import { onMounted, inject, computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { onMounted, inject, computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { resumeData } from '@/data/resumeData.js'
 
 // Destructure data
+const { personalInfo, skills, projects } = resumeData
 const { personalInfo, skills, projects } = resumeData
 
 // Inject logger
@@ -225,12 +249,16 @@ const topSkills = computed(() => {
 const handleImageError = (event) => {
   // Optimized fallback image
   event.target.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
-  logger?.warn('Avatar image failed to load', { 
+  logger?.warn('Avatar image failed to load', {
     originalSrc: personalInfo.avatar,
-    fallbackSrc: event.target.src 
+    fallbackSrc: event.target.src
   }, 'HomePage')
 }
 
+const openProjectDemo = (demoUrl) => {
+  if (demoUrl) {
+    window.open(demoUrl, '_blank', 'noopener,noreferrer')
+    logger?.logUserInteraction('project_demo_click', demoUrl, 'HomePage')
 const openProjectDemo = (demoUrl) => {
   if (demoUrl) {
     window.open(demoUrl, '_blank', 'noopener,noreferrer')
@@ -253,7 +281,7 @@ const getSkillIcon = (skillName) => {
 // Lifecycle
 onMounted(() => {
   logger?.logPageView('/')
-  logger?.info('HomePage mounted successfully', { 
+  logger?.info('HomePage mounted successfully', {
     featuredProjectsCount: featuredProjects.value.length,
     topSkillsCount: topSkills.value.length
   }, 'HomePage')
@@ -262,11 +290,12 @@ onMounted(() => {
 
 <style scoped>
 /* Glassmorphism Background - HomePage */
+/* Glassmorphism Background - HomePage */
 .home-page {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  background: 
+  background:
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
@@ -282,7 +311,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
     radial-gradient(circle at 25% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
     radial-gradient(circle at 75% 25%, rgba(255, 20, 147, 0.2) 0%, transparent 50%);
@@ -292,11 +321,11 @@ onMounted(() => {
 }
 
 @keyframes backgroundShift {
-  0%, 100% { 
-    background-position: 0% 50%, 25% 75%, 75% 25%; 
+  0%, 100% {
+    background-position: 0% 50%, 25% 75%, 75% 25%;
   }
-  50% { 
-    background-position: 100% 50%, 75% 25%, 25% 75%; 
+  50% {
+    background-position: 100% 50%, 75% 25%, 25% 75%;
   }
 }
 
@@ -314,8 +343,9 @@ onMounted(() => {
 }
 
 /* Hero Section - Enhanced Glassmorphism */
+/* Hero Section - Enhanced Glassmorphism */
 .hero-section {
-  padding: 5rem 2rem 3rem; 
+  padding: 5rem 2rem 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -330,13 +360,13 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(30px);
   border-radius: 30px;
   margin: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -351,7 +381,19 @@ onMounted(() => {
 .hero-main {
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: 2rem;
+  padding: 2rem;
   text-align: center;
   gap: 2rem;
   padding: 2rem;
@@ -362,22 +404,26 @@ onMounted(() => {
   position: relative;
   display: flex;
   justify-content: center;
-  width: 100%; 
+  width: 100%;
   max-width: 150px;
 }
 
 .avatar {
   width: 150px;
   height: 150px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
 }
 
+.avatar:hover,
+.avatar:focus {
 .avatar:hover,
 .avatar:focus {
   transform: scale(1.05);
@@ -394,6 +440,7 @@ onMounted(() => {
   opacity: 0.6;
   z-index: -1;
   animation: pulse 3s ease-in-out infinite;
+  animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -404,9 +451,11 @@ onMounted(() => {
 .hero-text {
   color: white;
   width: 100%;
+  width: 100%;
 }
 
 .hero-name {
+  font-size: 2.5rem;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -416,17 +465,23 @@ onMounted(() => {
   background-clip: text;
   line-height: 1.2;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-title {
+  font-size: 1.3rem;
   font-size: 1.3rem;
   font-weight: 500;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .hero-summary {
+  font-size: 1rem;
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -441,9 +496,9 @@ onMounted(() => {
   gap: 1rem;
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 400px; 
-  margin-left: auto; 
-  margin-right: auto; 
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-primary,
@@ -459,7 +514,7 @@ onMounted(() => {
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
-  min-height: 56px; 
+  min-height: 56px;
   border: 2px solid transparent;
   backdrop-filter: blur(20px);
 }
@@ -467,7 +522,7 @@ onMounted(() => {
 .cta-primary {
   background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   color: white;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(63, 94, 251, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
@@ -476,7 +531,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.15);
   color: white;
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -485,7 +540,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.1);
   color: white;
   border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -493,7 +548,7 @@ onMounted(() => {
 .cta-primary:hover,
 .cta-primary:focus {
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(63, 94, 251, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.2);
 }
@@ -504,7 +559,7 @@ onMounted(() => {
 .cta-tertiary:focus {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -519,13 +574,29 @@ onMounted(() => {
   flex-direction: column;
   gap: 0.75rem;
   font-size: 0.95rem;
+  font-size: 0.95rem;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: center;
   gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover,
+.contact-link:focus {
+  color: #f093fb;
+  text-decoration: underline;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -545,12 +616,14 @@ onMounted(() => {
 .icon {
   font-size: 1.1rem;
   min-width: 1.5rem;
+  font-size: 1.1rem;
+  min-width: 1.5rem;
 }
 
 /* Enhanced Stats Section */
 .stats-section {
   padding: 3rem 2rem;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   width: 100%;
@@ -574,20 +647,20 @@ onMounted(() => {
 .stat-item {
   text-align: center;
   padding: 1.5rem 1rem;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .stat-item:hover {
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -622,6 +695,7 @@ onMounted(() => {
 
 .section-title {
   font-size: 2rem;
+  font-size: 2rem;
   font-weight: 700;
   color: white;
   margin-bottom: 1rem;
@@ -630,23 +704,29 @@ onMounted(() => {
 
 .section-line {
   width: 80px;
+  width: 80px;
   height: 4px;
   background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
   margin: 0 auto 1rem;
   border-radius: 2px;
   box-shadow: 0 2px 10px rgba(63, 94, 251, 0.3);
+  box-shadow: 0 2px 10px rgba(63, 94, 251, 0.3);
 }
 
 .section-subtitle {
   font-size: 1rem;
+.section-subtitle {
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   line-height: 1.6;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Enhanced Featured Projects */
 .featured-projects {
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   width: 100%;
@@ -657,7 +737,12 @@ onMounted(() => {
 .projects-preview {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
+  margin-bottom: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2rem;
   max-width: 1400px;
   margin-left: auto;
@@ -665,7 +750,7 @@ onMounted(() => {
 }
 
 .project-preview-card {
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border-radius: 20px;
@@ -673,7 +758,7 @@ onMounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -681,10 +766,10 @@ onMounted(() => {
 .project-preview-card:hover,
 .project-preview-card:focus {
   transform: translateY(-8px);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
   outline: none;
 }
@@ -704,6 +789,8 @@ onMounted(() => {
 
 .project-preview-card:hover .project-image img,
 .project-preview-card:focus .project-image img {
+.project-preview-card:hover .project-image img,
+.project-preview-card:focus .project-image img {
   transform: scale(1.1);
 }
 
@@ -713,7 +800,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(135deg, rgba(63, 94, 251, 0.9) 0%, rgba(252, 70, 107, 0.9) 100%);
   backdrop-filter: blur(10px);
   display: flex;
@@ -725,16 +812,21 @@ onMounted(() => {
 
 .project-preview-card:hover .project-overlay,
 .project-preview-card:focus .project-overlay {
+.project-preview-card:hover .project-overlay,
+.project-preview-card:focus .project-overlay {
   opacity: 1;
 }
 
+.view-text {
 .view-text {
   color: white;
   font-weight: 600;
   font-size: 1.1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+.project-info {
 .project-info {
   padding: 1.5rem;
   color: white;
@@ -742,8 +834,11 @@ onMounted(() => {
 
 .project-name {
   font-size: 1.2rem;
+  font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
+  color: #f093fb;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   color: #f093fb;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -751,11 +846,17 @@ onMounted(() => {
 .project-desc {
   font-size: 0.95rem;
   line-height: 1.5;
+.project-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
   margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+.project-tech {
 .project-tech {
   display: flex;
   flex-wrap: wrap;
@@ -763,14 +864,17 @@ onMounted(() => {
 }
 
 .tech-badge {
-  background: 
+  background:
     linear-gradient(135deg, rgba(63, 94, 251, 0.4) 0%, rgba(252, 70, 107, 0.4) 100%);
   backdrop-filter: blur(10px);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
+  border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -790,23 +894,23 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border-radius: 15px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .skill-card:hover {
   transform: translateY(-3px);
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -869,7 +973,7 @@ onMounted(() => {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -879,17 +983,17 @@ onMounted(() => {
   font-weight: 600;
   transition: all 0.3s ease;
   min-height: 56px;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .view-all-btn:hover,
 .view-all-btn:focus {
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -911,57 +1015,57 @@ onMounted(() => {
     text-align: left;
     gap: 3rem;
   }
-  
+
   .hero-text {
     flex: 1;
   }
-  
+
   .avatar-container {
     width: auto;
     max-width: 200px;
     flex-shrink: 0;
-    justify-content: flex-start; 
+    justify-content: flex-start;
   }
 
   .avatar {
     width: 200px;
     height: 200px;
   }
-  
+
   .hero-name {
     font-size: 3rem;
   }
-  
+
   .hero-title {
     font-size: 1.5rem;
   }
-  
+
   .hero-summary {
     font-size: 1.1rem;
   }
-  
+
   .hero-cta {
     flex-direction: row;
     max-width: none;
-    justify-content: flex-start; 
-    margin-left: 0; 
-    margin-right: 0; 
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
   }
-  
+
   .hero-contact {
     flex-direction: row;
     justify-content: flex-start;
     gap: 2rem;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .projects-preview {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -972,19 +1076,19 @@ onMounted(() => {
   .hero-section {
     padding: 6rem 3rem 4rem;
   }
-  
+
   .section-container {
     padding: 4rem 3rem;
   }
-  
+
   .projects-preview {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .hero-cta {
     gap: 1.5rem;
   }
@@ -994,12 +1098,13 @@ onMounted(() => {
 @media (min-width: 1440px) {
   .hero-section {
     padding: 6rem 4rem 4rem;
+    padding: 6rem 4rem 4rem;
   }
-  
+
   .section-container {
     padding: 4rem 4rem;
   }
-  
+
   .stats-container {
     padding: 0 4rem;
   }
@@ -1030,7 +1135,7 @@ onMounted(() => {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .avatar-glow,
   .home-page::before {
     animation: none;
@@ -1043,14 +1148,14 @@ onMounted(() => {
     background: white !important;
     color: black !important;
   }
-  
+
   .hero-background,
   .stat-item,
   .project-preview-card {
     background: white !important;
     border: 1px solid #ccc !important;
   }
-  
+
   .project-overlay,
   .avatar-glow {
     display: none !important;
