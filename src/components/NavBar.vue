@@ -41,33 +41,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, inject } from 'vue'
 import { RouterLink } from 'vue-router'
-
-const logger = inject('logger')
-const isMenuOpen = ref(false)
-
-const navItems = [
-  { name: 'Trang Chủ', path: '/', icon: '🏠' },
-  { name: 'Kinh Nghiệm', path: '/experience', icon: '💼' },
-  { name: 'Kỹ Năng', path: '/skills', icon: '⚡' },
-  { name: 'Dự Án', path: '/projects', icon: '🚀' },
-  { name: 'Liên Hệ', path: '/contact', icon: '📞' },
-  { name: 'AI Copilot', path: '/chat-ai', icon: '🤖' }
-]
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value
-  logger?.logUserInteraction('menu_toggle', isMenuOpen.value ? 'open' : 'close', 'NavBar')
-}
-
-const closeMenu = () => {
-  isMenuOpen.value = false
-}
-
-onMounted(() => {
-  logger?.info('NavBar mounted', { itemsCount: navItems.length }, 'NavBar')
-})
 </script>
 
 <style scoped>
@@ -315,4 +289,23 @@ onMounted(() => {
     transition: none;
   }
 }
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .nav-toggle:focus {
+    outline: 3px solid white;
+  }
+  
+  .hamburger-line {
+    background: white;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .hamburger-line,
+  .nav-menu {
+    transition: none;
+  }
 </style>

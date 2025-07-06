@@ -1,16 +1,25 @@
-<template>
-  <div id="app">
-    <NavBar />
-    <main class="main-content">
-      <RouterView />
-    </main>
-  </div>
-</template>
-
 <script setup>
 import { RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
 import NavBar from './components/NavBar.vue'
+import logger from './utils/logger.js'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  logger.info('App mounted')
+})
 </script>
+
+<template>
+  <header class="app-container">
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
+    <NavBar />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
+  </header>
 
 <style>
 /* CSS Reset và Base Styles - Optimized */
@@ -33,9 +42,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#app {
-  min-height: 100vh;
-  position: relative;
+.app-container {
+  @apply glassmorphism;
+  padding: 20px;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
 }
 
 .main-content {
