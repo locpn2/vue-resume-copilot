@@ -288,4 +288,24 @@ import { RouterLink } from 'vue-router'
   .nav-menu {
     transition: none;
   }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .nav-toggle:focus {
+    outline: 3px solid white;
+  }
+  
+  .hamburger-line {
+    background: white;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link,
+  .hamburger-line,
+  .nav-menu {
+    transition: none;
+  }
 </style>
