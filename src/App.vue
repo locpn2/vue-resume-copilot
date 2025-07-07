@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div id="app">
     <NavBar />
@@ -22,6 +23,48 @@ import NavBar from './components/NavBar.vue'
 
 html {
   scroll-behavior: smooth;
+=======
+<script setup>
+import { RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar.vue'
+import logger from './utils/logger.js'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  logger.info('App mounted')
+})
+</script>
+
+<template>
+  <header class="app-container">
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
+    <NavBar />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+    </div>
+  </header>
+
+  <RouterView />
+</template>
+
+<style module>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+.app-container {
+  @apply glassmorphism;
+  padding: 20px;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+>>>>>>> master
 }
 
 body {

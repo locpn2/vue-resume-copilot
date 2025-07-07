@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <nav class="navbar">
     <div class="nav-container">
       <!-- Logo -->
@@ -37,10 +38,16 @@
         <span class="hamburger-line" :class="{ active: isMenuOpen }"></span>
       </button>
     </div>
+=======
+  <nav>
+    <RouterLink to="/">Home</RouterLink> | <RouterLink to="/about">About</RouterLink> |
+    <RouterLink to="/chat">Chat</RouterLink>
+>>>>>>> master
   </nav>
 </template>
 
 <script setup>
+<<<<<<< HEAD
 import { ref, onMounted, inject } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -316,3 +323,23 @@ onMounted(() => {
   }
 }
 </style>
+=======
+import { RouterLink } from 'vue-router'
+</script>
+
+<style scoped>
+nav {
+  padding: 1rem;
+  text-align: center;
+}
+
+a {
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.router-link-exact-active {
+  color: var(--color-green);
+}
+</style>
+>>>>>>> master
