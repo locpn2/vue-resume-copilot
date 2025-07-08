@@ -59,7 +59,6 @@ This file contains project-specific rules for the Resume Copilot project, supple
 ## 10. Commit Messages
 
 - Follow the Conventional Commits format.
-- Write commit messages in Vietnamese.
 - Include a detailed description of the changes.
 
 ## 11. Directory Structure
@@ -198,11 +197,14 @@ BREAKING CHANGE: the old `/api/customers/find` endpoint is removed
 - Add a `BREAKING CHANGE:` notice in the footer when introducing incompatible changes.
 
 - Avoid vague or meaningless commit messages such as:
+
   - `commit`
   - `update code`
   - `fix something`
   - `change`
   - `more tests`
+
+- Do not force push to the remote repository (`git push --force` or `git push -f`). This can overwrite history and cause issues for other collaborators.
 
 ## Reminder - Instructions for Tool Use
 

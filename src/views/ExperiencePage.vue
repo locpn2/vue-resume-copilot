@@ -5,13 +5,14 @@
         <h1 class="page-title">Kinh Nghiệm Làm Việc</h1>
         <div class="page-line" aria-hidden="true"></div>
         <p class="page-subtitle">
-          Hành trình phát triển nghề nghiệp với {{ experience.length }} vị trí tại các công ty công nghệ hàng đầu
+          Hành trình phát triển nghề nghiệp với {{ experience.length }} vị trí tại các công ty công
+          nghệ hàng đầu
         </p>
       </div>
-      
+
       <div class="experience-timeline" role="list" aria-label="Lịch sử kinh nghiệm làm việc">
-        <article 
-          v-for="(exp, index) in experience" 
+        <article
+          v-for="(exp, index) in experience"
           :key="exp.id"
           class="experience-item"
           role="listitem"
@@ -30,16 +31,20 @@
                 <div class="experience-type">Full-time</div>
               </div>
             </header>
-            
+
             <div class="experience-summary">
               <p class="experience-description">{{ exp.description }}</p>
             </div>
-            
+
             <div class="experience-details">
               <div class="experience-responsibilities">
                 <h4>🎯 Trách nhiệm chính</h4>
                 <ul role="list">
-                  <li v-for="responsibility in exp.responsibilities" :key="responsibility" role="listitem">
+                  <li
+                    v-for="responsibility in exp.responsibilities"
+                    :key="responsibility"
+                    role="listitem"
+                  >
                     {{ responsibility }}
                   </li>
                 </ul>
@@ -57,18 +62,14 @@
               <div class="experience-technologies">
                 <h4>🛠️ Công nghệ & Công cụ</h4>
                 <div class="tech-grid">
-                  <span 
-                    v-for="tech in exp.technologies" 
-                    :key="tech"
-                    class="tech-tag"
-                  >
+                  <span v-for="tech in exp.technologies" :key="tech" class="tech-tag">
                     {{ tech }}
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div class="timeline-connector" v-if="index < experience.length - 1" aria-hidden="true">
             <div class="timeline-dot"></div>
             <div class="timeline-line"></div>
@@ -116,16 +117,20 @@ const totalYearsExperience = computed(() => {
 })
 
 const uniqueTechnologies = computed(() => {
-  const allTech = experience.flatMap(exp => exp.technologies)
+  const allTech = experience.flatMap((exp) => exp.technologies)
   return [...new Set(allTech)]
 })
 
 onMounted(() => {
   logger?.logPageView('/experience')
-  logger?.info('ExperiencePage mounted', { 
-    experienceCount: experience.length,
-    technologiesCount: uniqueTechnologies.value.length
-  }, 'ExperiencePage')
+  logger?.info(
+    'ExperiencePage mounted',
+    {
+      experienceCount: experience.length,
+      technologiesCount: uniqueTechnologies.value.length,
+    },
+    'ExperiencePage',
+  )
 })
 </script>
 
@@ -135,12 +140,15 @@ onMounted(() => {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  background: 
+  background:
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
     radial-gradient(circle at 30% 70%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 70% 30%, rgba(255, 20, 147, 0.3) 0%, transparent 50%);
   background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%;
   padding: 6rem 2rem 2rem;
 }
 
@@ -151,7 +159,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%),
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
@@ -161,11 +169,18 @@ onMounted(() => {
 }
 
 @keyframes backgroundFloat {
-  0%, 100% { 
-    background-position: 0% 50%, 20% 80%, 80% 20%; 
+  0%,
+  100% {
+    background-position:
+      0% 50%,
+      20% 80%,
+      80% 20%;
   }
-  50% { 
-    background-position: 100% 50%, 80% 20%, 20% 80%; 
+  50% {
+    background-position:
+      100% 50%,
+      80% 20%,
+      20% 80%;
   }
 }
 
@@ -185,7 +200,7 @@ onMounted(() => {
   color: white;
   margin-bottom: 1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -194,7 +209,7 @@ onMounted(() => {
 .page-line {
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(90deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   margin: 0 auto 1.5rem;
   border-radius: 2px;
   box-shadow: 0 2px 10px rgba(63, 94, 251, 0.4);
@@ -221,8 +236,7 @@ onMounted(() => {
 }
 
 .experience-card {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 2.5rem;
@@ -233,7 +247,7 @@ onMounted(() => {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -241,11 +255,10 @@ onMounted(() => {
 .experience-card:hover,
 .experience-card:focus-within {
   transform: translateY(-8px);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
 }
 
 .experience-header {
@@ -299,7 +312,7 @@ onMounted(() => {
   display: block;
   font-size: 1rem;
   font-weight: 600;
-  color: #3F5EFB;
+  color: #3f5efb;
   margin-bottom: 0.25rem;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
@@ -329,13 +342,12 @@ onMounted(() => {
 .experience-responsibilities,
 .experience-achievements,
 .experience-technologies {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   border-radius: 16px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -373,7 +385,7 @@ onMounted(() => {
   content: '▶';
   position: absolute;
   left: 0;
-  color: #3F5EFB;
+  color: #3f5efb;
   font-size: 0.8rem;
   top: 0.1rem;
 }
@@ -394,8 +406,12 @@ onMounted(() => {
 }
 
 .tech-tag {
-  background: 
-    linear-gradient(135deg, rgba(63, 94, 251, 0.4) 0%, rgba(252, 70, 107, 0.4) 50%, rgba(240, 147, 251, 0.4) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(63, 94, 251, 0.4) 0%,
+    rgba(252, 70, 107, 0.4) 50%,
+    rgba(240, 147, 251, 0.4) 100%
+  );
   backdrop-filter: blur(10px);
   color: white;
   padding: 0.5rem 1rem;
@@ -411,7 +427,7 @@ onMounted(() => {
 
 .tech-tag:hover {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(63, 94, 251, 0.3),
     0 0 20px rgba(240, 147, 251, 0.2);
 }
@@ -428,9 +444,9 @@ onMounted(() => {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   border: 3px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 
+  box-shadow:
     0 0 20px rgba(63, 94, 251, 0.5),
     0 0 40px rgba(240, 147, 251, 0.3);
   margin-bottom: 1rem;
@@ -439,15 +455,14 @@ onMounted(() => {
 .timeline-line {
   width: 2px;
   height: 40px;
-  background: linear-gradient(180deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(180deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   opacity: 0.7;
   box-shadow: 0 0 10px rgba(240, 147, 251, 0.3);
 }
 
 /* Career Summary - Enhanced */
 .career-summary {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 3rem;
@@ -456,7 +471,7 @@ onMounted(() => {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -467,7 +482,7 @@ onMounted(() => {
   color: white;
   margin-bottom: 2rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -482,20 +497,19 @@ onMounted(() => {
 .stat-item {
   text-align: center;
   padding: 1.5rem 1rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .stat-item:hover {
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -503,7 +517,7 @@ onMounted(() => {
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -528,7 +542,7 @@ onMounted(() => {
   .experience-page {
     padding: 6rem 3rem 2rem;
   }
-  
+
   .page-container {
     padding: 0 3rem;
   }
@@ -538,7 +552,7 @@ onMounted(() => {
   .experience-page {
     padding: 6rem 4rem 2rem;
   }
-  
+
   .page-container {
     padding: 0 4rem;
   }
@@ -610,7 +624,7 @@ onMounted(() => {
   .career-summary {
     border: 2px solid white;
   }
-  
+
   .tech-tag {
     border: 2px solid currentColor;
   }
@@ -625,7 +639,7 @@ onMounted(() => {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .experience-page::before {
     animation: none;
   }

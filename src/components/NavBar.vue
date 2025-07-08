@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <nav class="navbar">
     <div class="nav-container">
       <!-- Logo -->
@@ -12,10 +11,10 @@
 
       <!-- Desktop Navigation -->
       <div class="nav-menu" :class="{ active: isMenuOpen }">
-        <RouterLink 
-          v-for="item in navItems" 
+        <RouterLink
+          v-for="item in navItems"
           :key="item.path"
-          :to="item.path" 
+          :to="item.path"
           class="nav-link"
           @click="closeMenu"
           v-log-click="item.name"
@@ -26,9 +25,9 @@
       </div>
 
       <!-- Mobile Menu Toggle - Improved hamburger -->
-      <button 
-        class="nav-toggle" 
-        @click="toggleMenu" 
+      <button
+        class="nav-toggle"
+        @click="toggleMenu"
         v-log-click="'menu-toggle'"
         :aria-label="isMenuOpen ? 'Đóng menu' : 'Mở menu'"
         :aria-expanded="isMenuOpen"
@@ -38,16 +37,10 @@
         <span class="hamburger-line" :class="{ active: isMenuOpen }"></span>
       </button>
     </div>
-=======
-  <nav>
-    <RouterLink to="/">Home</RouterLink> | <RouterLink to="/about">About</RouterLink> |
-    <RouterLink to="/chat">Chat</RouterLink>
->>>>>>> master
   </nav>
 </template>
 
 <script setup>
-<<<<<<< HEAD
 import { ref, onMounted, inject } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -60,7 +53,7 @@ const navItems = [
   { name: 'Kỹ Năng', path: '/skills', icon: '⚡' },
   { name: 'Dự Án', path: '/projects', icon: '🚀' },
   { name: 'Liên Hệ', path: '/contact', icon: '📞' },
-  { name: 'AI Copilot', path: '/chat-ai', icon: '🤖' }
+  { name: 'AI Copilot', path: '/chat-ai', icon: '🤖' },
 ]
 
 const toggleMenu = () => {
@@ -113,7 +106,7 @@ onMounted(() => {
 }
 
 .logo-accent {
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -148,7 +141,7 @@ onMounted(() => {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 100%);
   transition: left 0.3s ease;
   z-index: -1;
 }
@@ -221,11 +214,11 @@ onMounted(() => {
   .nav-container {
     padding: 0 1rem;
   }
-  
+
   .nav-toggle {
     display: flex;
   }
-  
+
   .nav-menu {
     position: fixed;
     top: 70px;
@@ -242,11 +235,11 @@ onMounted(() => {
     transition: left 0.3s ease;
     overflow-y: auto;
   }
-  
+
   .nav-menu.active {
     left: 0;
   }
-  
+
   .nav-link {
     width: 85%;
     max-width: 300px;
@@ -256,11 +249,11 @@ onMounted(() => {
     border-radius: 15px;
     min-height: 56px;
   }
-  
+
   .nav-icon {
     font-size: 1.4rem;
   }
-  
+
   .nav-text {
     font-size: 1rem;
   }
@@ -283,21 +276,21 @@ onMounted(() => {
     height: 60px;
     padding: 0 0.75rem;
   }
-  
+
   .nav-menu {
     top: 60px;
     height: calc(100vh - 60px);
   }
-  
+
   .logo-link {
     font-size: 1.3rem;
   }
-  
+
   .nav-toggle {
     width: 40px;
     height: 40px;
   }
-  
+
   .hamburger-line {
     width: 24px;
   }
@@ -308,7 +301,7 @@ onMounted(() => {
   .nav-toggle:focus {
     outline: 3px solid white;
   }
-  
+
   .hamburger-line {
     background: white;
   }
@@ -323,23 +316,3 @@ onMounted(() => {
   }
 }
 </style>
-=======
-import { RouterLink } from 'vue-router'
-</script>
-
-<style scoped>
-nav {
-  padding: 1rem;
-  text-align: center;
-}
-
-a {
-  font-weight: bold;
-  color: var(--color-text);
-}
-
-.router-link-exact-active {
-  color: var(--color-green);
-}
-</style>
->>>>>>> master

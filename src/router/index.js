@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
-=======
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import AboutView from '../views/AboutView.vue';
-import ChatPage from '../views/ChatPage.vue';
->>>>>>> master
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +7,6 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-<<<<<<< HEAD
       component: HomePage,
       meta: { title: 'Trang Chủ - Resume Copilot' }
     },
@@ -63,21 +55,3 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
-=======
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: AboutView
-    },
-    {
-      path: '/chat',
-      name: 'chat',
-      component: ChatPage
-    }
-  ]
-});
-
-export default router;
->>>>>>> master

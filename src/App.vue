@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <div id="app">
     <NavBar />
@@ -23,52 +22,16 @@ import NavBar from './components/NavBar.vue'
 
 html {
   scroll-behavior: smooth;
-=======
-<script setup>
-import { RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import NavBar from './components/NavBar.vue'
-import logger from './utils/logger.js'
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  logger.info('App mounted')
-})
-</script>
-
-<template>
-  <header class="app-container">
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <NavBar />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <RouterView />
-</template>
-
-<style module>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.app-container {
-  @apply glassmorphism;
-  padding: 20px;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
->>>>>>> master
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   line-height: 1.6;
   color: #333;
   overflow-x: hidden;
@@ -96,7 +59,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 100%);
   border-radius: 4px;
 }
 
@@ -117,8 +80,12 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .fade-enter-active,
@@ -136,7 +103,7 @@ body {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: #FC466B;
+  background: #fc466b;
   color: white;
   padding: 8px;
   text-decoration: none;
@@ -150,13 +117,13 @@ body {
 
 /* Improved Focus Styles */
 *:focus {
-  outline: 3px solid #FC466B;
+  outline: 3px solid #fc466b;
   outline-offset: 2px;
 }
 
 /* Button and Interactive Element Improvements */
 button,
-[role="button"],
+[role='button'],
 input,
 select,
 textarea {
@@ -166,7 +133,7 @@ textarea {
 /* Mobile-first Media Queries */
 @media (max-width: 768px) {
   button,
-  [role="button"],
+  [role='button'],
   .nav-link,
   .cta-primary,
   .cta-secondary,
@@ -202,22 +169,24 @@ textarea {
     box-shadow: none !important;
     text-shadow: none !important;
   }
-  
+
   .navbar,
   .nav-toggle,
   .hero-cta,
   .section-cta {
     display: none !important;
   }
-  
+
   .main-content {
     margin-top: 0 !important;
   }
-  
-  h1, h2, h3 {
+
+  h1,
+  h2,
+  h3 {
     page-break-after: avoid;
   }
-  
+
   img {
     max-width: 100% !important;
     height: auto !important;
@@ -236,7 +205,7 @@ img {
   loading: lazy;
 }
 
-img[loading="eager"] {
+img[loading='eager'] {
   loading: eager;
 }
 
