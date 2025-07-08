@@ -8,18 +8,18 @@
           Hãy kết nối với tôi để thảo luận về cơ hội hợp tác hoặc dự án mới
         </p>
       </div>
-      
+
       <div class="contact-content">
         <!-- Contact Information -->
         <div class="contact-info">
           <h2 class="section-title">Thông Tin Liên Hệ</h2>
-          
+
           <div class="contact-methods">
             <div class="contact-method">
               <div class="contact-icon">📧</div>
               <div class="contact-details">
                 <h3>Email</h3>
-                <a 
+                <a
                   :href="`mailto:${personalInfo.email}`"
                   class="contact-link"
                   :aria-label="`Gửi email đến ${personalInfo.email}`"
@@ -34,7 +34,7 @@
               <div class="contact-icon">📱</div>
               <div class="contact-details">
                 <h3>Điện thoại</h3>
-                <a 
+                <a
                   :href="`tel:${personalInfo.phone}`"
                   class="contact-link"
                   :aria-label="`Gọi điện đến ${personalInfo.phone}`"
@@ -59,7 +59,7 @@
           <div class="social-section">
             <h3 class="social-title">Kết nối qua mạng xã hội</h3>
             <div class="social-links">
-              <a 
+              <a
                 :href="personalInfo.socialLinks.github"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -72,7 +72,7 @@
                 <span class="social-desc">Xem source code</span>
               </a>
 
-              <a 
+              <a
                 :href="personalInfo.socialLinks.linkedin"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -85,7 +85,7 @@
                 <span class="social-desc">Kết nối chuyên nghiệp</span>
               </a>
 
-              <a 
+              <a
                 :href="personalInfo.socialLinks.portfolio"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -104,12 +104,12 @@
         <!-- Contact Form -->
         <div class="contact-form-section">
           <h2 class="section-title">Gửi Tin Nhắn</h2>
-          
+
           <form @submit.prevent="submitForm" class="contact-form" novalidate>
             <div class="form-group">
               <label for="name" class="form-label">Họ và tên *</label>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 id="name"
                 v-model="form.name"
                 class="form-input"
@@ -125,8 +125,8 @@
 
             <div class="form-group">
               <label for="email" class="form-label">Email *</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 id="email"
                 v-model="form.email"
                 class="form-input"
@@ -142,7 +142,7 @@
 
             <div class="form-group">
               <label for="subject" class="form-label">Chủ đề *</label>
-              <select 
+              <select
                 id="subject"
                 v-model="form.subject"
                 class="form-select"
@@ -165,7 +165,7 @@
 
             <div class="form-group">
               <label for="message" class="form-label">Tin nhắn *</label>
-              <textarea 
+              <textarea
                 id="message"
                 v-model="form.message"
                 class="form-textarea"
@@ -181,8 +181,8 @@
               </span>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               class="submit-btn"
               :disabled="isSubmitting"
               :aria-label="isSubmitting ? 'Đang gửi tin nhắn' : 'Gửi tin nhắn'"
@@ -223,19 +223,22 @@
         <div class="faq-grid">
           <div class="faq-item">
             <h3>🤝 Bạn có nhận freelance không?</h3>
-            <p>Có, tôi nhận các dự án freelance phù hợp với kỹ năng và thời gian. Hãy liên hệ để thảo luận chi tiết.</p>
+            <p>
+              Có, tôi nhận các dự án freelance phù hợp với kỹ năng và thời gian. Hãy liên hệ để thảo
+              luận chi tiết.
+            </p>
           </div>
-          
+
           <div class="faq-item">
             <h3>⏰ Thời gian phản hồi như thế nào?</h3>
             <p>Tôi thường phản hồi email trong vòng 24 giờ, trừ cuối tuần và ngày lễ.</p>
           </div>
-          
+
           <div class="faq-item">
             <h3>💼 Bạn có sẵn sàng làm việc remote không?</h3>
             <p>Có, tôi có kinh nghiệm làm việc remote và có thể hợp tác với team ở bất kỳ đâu.</p>
           </div>
-          
+
           <div class="faq-item">
             <h3>🛠️ Công nghệ nào bạn chuyên về?</h3>
             <p>Tôi chuyên về Vue.js, React, TypeScript và các công nghệ frontend hiện đại.</p>
@@ -258,7 +261,7 @@ const form = reactive({
   name: '',
   email: '',
   subject: '',
-  message: ''
+  message: '',
 })
 
 const errors = reactive({})
@@ -267,6 +270,7 @@ const submitStatus = ref(null) // 'success', 'error', or null
 
 // Validation rules
 const validateField = (field) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   switch (field) {
     case 'name':
       if (!form.name.trim()) {
@@ -277,9 +281,8 @@ const validateField = (field) => {
         delete errors.name
       }
       break
-    
+
     case 'email':
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!form.email.trim()) {
         errors.email = 'Vui lòng nhập email'
       } else if (!emailRegex.test(form.email)) {
@@ -288,7 +291,7 @@ const validateField = (field) => {
         delete errors.email
       }
       break
-    
+
     case 'subject':
       if (!form.subject) {
         errors.subject = 'Vui lòng chọn chủ đề'
@@ -296,7 +299,7 @@ const validateField = (field) => {
         delete errors.subject
       }
       break
-    
+
     case 'message':
       if (!form.message.trim()) {
         errors.message = 'Vui lòng nhập tin nhắn'
@@ -328,21 +331,24 @@ const submitForm = async () => {
 
   try {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     // Mock success (in real app, this would be an actual API call)
-    logger?.info('Contact form submitted', { 
-      subject: form.subject,
-      messageLength: form.message.length 
-    }, 'ContactPage')
-    
+    logger?.info(
+      'Contact form submitted',
+      {
+        subject: form.subject,
+        messageLength: form.message.length,
+      },
+      'ContactPage',
+    )
+
     submitStatus.value = 'success'
-    
+
     // Reset form
-    Object.keys(form).forEach(key => {
+    Object.keys(form).forEach((key) => {
       form[key] = ''
     })
-    
   } catch (error) {
     logger?.error('Contact form submission failed', { error }, 'ContactPage')
     submitStatus.value = 'error'
@@ -367,12 +373,15 @@ onMounted(() => {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  background: 
+  background:
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
     radial-gradient(circle at 40% 60%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 60% 40%, rgba(255, 20, 147, 0.3) 0%, transparent 50%);
   background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%;
   padding: 6rem 2rem 2rem;
 }
 
@@ -383,7 +392,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(90deg, transparent 30%, rgba(255, 255, 255, 0.04) 50%, transparent 70%),
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
@@ -393,11 +402,18 @@ onMounted(() => {
 }
 
 @keyframes contactBackgroundShift {
-  0%, 100% { 
-    background-position: 0% 50%, 20% 80%, 80% 20%; 
+  0%,
+  100% {
+    background-position:
+      0% 50%,
+      20% 80%,
+      80% 20%;
   }
-  50% { 
-    background-position: 100% 50%, 80% 20%, 20% 80%; 
+  50% {
+    background-position:
+      100% 50%,
+      80% 20%,
+      20% 80%;
   }
 }
 
@@ -417,7 +433,7 @@ onMounted(() => {
   color: white;
   margin-bottom: 1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -426,7 +442,7 @@ onMounted(() => {
 .page-line {
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(90deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   margin: 0 auto 1.5rem;
   border-radius: 2px;
   box-shadow: 0 2px 10px rgba(63, 94, 251, 0.4);
@@ -458,7 +474,7 @@ onMounted(() => {
   color: white;
   margin-bottom: 2rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -466,14 +482,13 @@ onMounted(() => {
 
 /* Contact Info - Enhanced */
 .contact-info {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   height: fit-content;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -498,8 +513,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
   backdrop-filter: blur(15px);
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -525,7 +539,7 @@ onMounted(() => {
 
 .contact-link:hover,
 .contact-link:focus {
-  color: #3F5EFB;
+  color: #3f5efb;
   text-decoration: underline;
 }
 
@@ -567,25 +581,23 @@ onMounted(() => {
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   text-decoration: none;
   color: white;
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .social-link:hover,
 .social-link:focus {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
   transform: translateX(5px);
-  box-shadow: 
+  box-shadow:
     0 6px 20px rgba(63, 94, 251, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -610,13 +622,12 @@ onMounted(() => {
 
 /* Contact Form - Enhanced */
 .contact-form-section {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -644,13 +655,12 @@ onMounted(() => {
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(15px);
   color: white;
   font-size: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -664,20 +674,19 @@ onMounted(() => {
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #3F5EFB;
-  box-shadow: 
+  border-color: #3f5efb;
+  box-shadow:
     0 0 0 3px rgba(63, 94, 251, 0.3),
     0 6px 20px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
 }
 
 .form-input.error,
 .form-select.error,
 .form-textarea.error {
-  border-color: #FC466B;
-  box-shadow: 
+  border-color: #fc466b;
+  box-shadow:
     0 0 0 3px rgba(252, 70, 107, 0.3),
     0 4px 15px rgba(252, 70, 107, 0.2);
 }
@@ -693,7 +702,7 @@ onMounted(() => {
   padding: 1rem 2rem;
   border: none;
   border-radius: 25px;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -704,14 +713,14 @@ onMounted(() => {
   justify-content: center;
   gap: 0.5rem;
   margin-top: 1rem;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(63, 94, 251, 0.4),
     0 0 20px rgba(240, 147, 251, 0.3);
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(63, 94, 251, 0.5),
     0 0 30px rgba(240, 147, 251, 0.4);
 }
@@ -730,8 +739,12 @@ onMounted(() => {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Status Messages - Enhanced */
@@ -748,13 +761,11 @@ onMounted(() => {
 }
 
 .status-message.success {
-  background: 
-    linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0.1) 100%);
 }
 
 .status-message.error {
-  background: 
-    linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.1) 100%);
 }
 
 .status-icon {
@@ -779,8 +790,7 @@ onMounted(() => {
 
 /* FAQ Section - Enhanced */
 .faq-section {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 3rem;
@@ -788,7 +798,7 @@ onMounted(() => {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -800,23 +810,21 @@ onMounted(() => {
 }
 
 .faq-item {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   border-radius: 16px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.15);
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .faq-item:hover {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -844,7 +852,7 @@ onMounted(() => {
   .page-container {
     padding: 0 2rem;
   }
-  
+
   .contact-content {
     grid-template-columns: 1fr 1fr;
   }
@@ -854,7 +862,7 @@ onMounted(() => {
   .contact-page {
     padding: 6rem 3rem 2rem;
   }
-  
+
   .page-container {
     padding: 0 3rem;
   }
@@ -864,7 +872,7 @@ onMounted(() => {
   .contact-page {
     padding: 6rem 4rem 2rem;
   }
-  
+
   .page-container {
     padding: 0 4rem;
   }
@@ -932,7 +940,7 @@ onMounted(() => {
   .faq-section {
     border: 2px solid white;
   }
-  
+
   .form-input,
   .form-select,
   .form-textarea {
@@ -949,7 +957,7 @@ onMounted(() => {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .btn-icon.loading,
   .contact-page::before {
     animation: none;

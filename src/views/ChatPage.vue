@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="chat-page">
     <div class="page-container">
       <div class="page-header">
@@ -9,7 +8,7 @@
           Trợ lý AI thông minh giúp bạn tối ưu hóa CV và tìm kiếm cơ hội nghề nghiệp
         </p>
       </div>
-      
+
       <div class="content-placeholder">
         <div class="ai-icon">🤖</div>
         <h2>AI Chat Assistant</h2>
@@ -46,12 +45,15 @@ onMounted(() => {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  background: 
+  background:
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
     radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.3) 0%, transparent 50%),
     radial-gradient(circle at 25% 75%, rgba(255, 20, 147, 0.3) 0%, transparent 50%);
   background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%;
   padding: 6rem 2rem 2rem;
 }
 
@@ -62,7 +64,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%),
     radial-gradient(circle at 50% 50%, rgba(120, 119, 198, 0.2) 0%, transparent 50%),
     radial-gradient(circle at 75% 25%, rgba(255, 119, 198, 0.2) 0%, transparent 50%);
@@ -72,11 +74,18 @@ onMounted(() => {
 }
 
 @keyframes chatBackgroundShift {
-  0%, 100% { 
-    background-position: 0% 50%, 50% 50%, 75% 25%; 
+  0%,
+  100% {
+    background-position:
+      0% 50%,
+      50% 50%,
+      75% 25%;
   }
-  50% { 
-    background-position: 100% 50%, 25% 75%, 50% 50%; 
+  50% {
+    background-position:
+      100% 50%,
+      25% 75%,
+      50% 50%;
   }
 }
 
@@ -96,7 +105,7 @@ onMounted(() => {
   color: white;
   margin-bottom: 1rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -105,7 +114,7 @@ onMounted(() => {
 .page-line {
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(90deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   margin: 0 auto 1.5rem;
   border-radius: 2px;
   box-shadow: 0 2px 10px rgba(63, 94, 251, 0.4);
@@ -119,8 +128,7 @@ onMounted(() => {
 }
 
 .content-placeholder {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(25px);
   border-radius: 24px;
   padding: 4rem 3rem;
@@ -129,7 +137,7 @@ onMounted(() => {
   color: white;
   max-width: 800px;
   margin: 0 auto;
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -141,15 +149,20 @@ onMounted(() => {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .content-placeholder h2 {
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -178,15 +191,14 @@ onMounted(() => {
 
 .feature-list li {
   padding: 1rem 1.5rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.95);
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -194,9 +206,8 @@ onMounted(() => {
 
 .feature-list li:hover {
   transform: translateX(5px);
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
-  box-shadow: 
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+  box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -208,29 +219,30 @@ onMounted(() => {
 .badge {
   display: inline-block;
   padding: 0.75rem 2rem;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   color: white;
   border-radius: 25px;
   font-weight: 600;
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(63, 94, 251, 0.4),
     0 0 20px rgba(240, 147, 251, 0.3);
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    transform: scale(1); 
-    box-shadow: 
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
       0 4px 15px rgba(63, 94, 251, 0.4),
       0 0 20px rgba(240, 147, 251, 0.3);
   }
-  50% { 
-    transform: scale(1.05); 
-    box-shadow: 
+  50% {
+    transform: scale(1.05);
+    box-shadow:
       0 6px 20px rgba(63, 94, 251, 0.5),
       0 0 30px rgba(240, 147, 251, 0.4);
   }
@@ -241,7 +253,7 @@ onMounted(() => {
   .page-container {
     padding: 0 2rem;
   }
-  
+
   .feature-list {
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
@@ -253,11 +265,11 @@ onMounted(() => {
   .chat-page {
     padding: 6rem 3rem 2rem;
   }
-  
+
   .page-container {
     padding: 0 3rem;
   }
-  
+
   .content-placeholder {
     padding: 5rem 4rem;
   }
@@ -267,7 +279,7 @@ onMounted(() => {
   .chat-page {
     padding: 6rem 4rem 2rem;
   }
-  
+
   .page-container {
     padding: 0 4rem;
   }
@@ -337,7 +349,7 @@ onMounted(() => {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .ai-icon,
   .badge,
   .chat-page::before {
@@ -345,32 +357,3 @@ onMounted(() => {
   }
 }
 </style>
-=======
-  <main class="chat-page">
-    <h1>Chat Page</h1>
-    <ChatSuggestion
-      v-for="suggestion in chatSuggestions"
-      :key="suggestion"
-      :suggestion="suggestion"
-    />
-  </main>
-</template>
-
-<script setup>
-import ChatSuggestion from '../components/ChatSuggestion.vue'
-import { chatSuggestions } from '../data.js'
-import logger from '../utils/logger.js'
-import { onMounted } from 'vue'
-
-onMounted(() => {
-  logger.info('ChatPage mounted')
-})
-</script>
-
-<style module>
-.chat-page {
-  @apply glassmorphism;
-  padding: 20px;
-}
-</style>
->>>>>>> master

@@ -1,5 +1,5 @@
 // Vue Plugin cho Logging System
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 
 // Cấu hình logging levels
 const LOG_LEVELS = {
@@ -123,7 +123,7 @@ export default {
     // Thêm logger vào global properties
     app.config.globalProperties.$logger = logger
     app.provide('logger', logger)
-    
+
     // Thêm directive để log user interactions
     app.directive('log-click', {
       mounted(el, binding) {

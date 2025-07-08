@@ -1,13 +1,12 @@
 <template>
-<<<<<<< HEAD
   <div class="home-page">
     <section class="hero-section" role="banner">
       <div class="hero-background" aria-hidden="true"></div>
       <div class="hero-content">
         <div class="hero-main">
           <div class="avatar-container">
-            <img 
-              :src="personalInfo.avatar" 
+            <img
+              :src="personalInfo.avatar"
               :alt="`Ảnh đại diện của ${personalInfo.name} - ${personalInfo.title}`"
               class="avatar"
               @error="handleImageError"
@@ -17,12 +16,12 @@
             />
             <div class="avatar-glow" aria-hidden="true"></div>
           </div>
-          
+
           <div class="hero-text">
             <h1 class="hero-name">{{ personalInfo.name }}</h1>
             <h2 class="hero-title">{{ personalInfo.title }}</h2>
             <p class="hero-summary">{{ personalInfo.summary }}</p>
-            
+
             <div class="hero-cta">
               <RouterLink to="/contact" class="cta-primary">
                 <span class="cta-icon">📧</span>
@@ -32,7 +31,7 @@
                 <span class="cta-icon">🚀</span>
                 <span>Xem Dự Án</span>
               </RouterLink>
-              <a 
+              <a
                 :href="personalInfo.socialLinks.portfolio"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -47,7 +46,7 @@
             <div class="hero-contact" role="list">
               <div class="contact-item" role="listitem">
                 <span class="icon" aria-label="Email">📧</span>
-                <a 
+                <a
                   :href="`mailto:${personalInfo.email}`"
                   class="contact-link"
                   :aria-label="`Gửi email đến ${personalInfo.email}`"
@@ -57,7 +56,7 @@
               </div>
               <div class="contact-item" role="listitem">
                 <span class="icon" aria-label="Số điện thoại">📱</span>
-                <a 
+                <a
                   :href="`tel:${personalInfo.phone}`"
                   class="contact-link"
                   :aria-label="`Gọi điện đến ${personalInfo.phone}`"
@@ -106,10 +105,10 @@
           <div class="section-line" aria-hidden="true"></div>
           <p class="section-subtitle">Một số dự án tiêu biểu tôi đã thực hiện</p>
         </div>
-        
+
         <div class="projects-preview">
-          <article 
-            v-for="project in featuredProjects" 
+          <article
+            v-for="project in featuredProjects"
             :key="project.id"
             class="project-preview-card"
             @click="openProjectDemo(project.links.demo)"
@@ -120,8 +119,8 @@
             :aria-label="`Xem chi tiết dự án ${project.name}`"
           >
             <div class="project-image">
-              <img 
-                :src="project.image" 
+              <img
+                :src="project.image"
                 :alt="`Hình ảnh minh họa dự án ${project.name} - ${project.description}`"
                 loading="lazy"
                 width="300"
@@ -131,13 +130,13 @@
                 <span class="view-text">Xem Chi Tiết</span>
               </div>
             </div>
-            
+
             <div class="project-info">
               <h3 class="project-name">{{ project.name }}</h3>
               <p class="project-desc">{{ project.description.substring(0, 100) }}...</p>
               <div class="project-tech">
-                <span 
-                  v-for="tech in project.technologies.slice(0, 3)" 
+                <span
+                  v-for="tech in project.technologies.slice(0, 3)"
                   :key="tech"
                   class="tech-badge"
                 >
@@ -164,19 +163,15 @@
           <div class="section-line" aria-hidden="true"></div>
           <p class="section-subtitle">Các công nghệ và kỹ năng tôi thành thạo</p>
         </div>
-        
+
         <div class="skills-grid">
-          <div 
-            v-for="skill in topSkills" 
-            :key="skill.name"
-            class="skill-card"
-          >
+          <div v-for="skill in topSkills" :key="skill.name" class="skill-card">
             <div class="skill-icon">{{ getSkillIcon(skill.name) }}</div>
             <div class="skill-info">
               <h3 class="skill-name">{{ skill.name }}</h3>
               <div class="skill-level">
                 <div class="skill-bar">
-                  <div 
+                  <div
                     class="skill-progress"
                     :style="{ width: skill.level + '%' }"
                     :aria-label="`Mức độ thành thạo ${skill.level}%`"
@@ -217,7 +212,7 @@ const featuredProjects = computed(() => {
 
 const topSkills = computed(() => {
   return skills
-    .filter(skill => skill.level >= 85) // Only high-level skills
+    .filter((skill) => skill.level >= 85) // Only high-level skills
     .sort((a, b) => b.level - a.level)
     .slice(0, 6) // Show top 6 skills
 })
@@ -225,11 +220,16 @@ const topSkills = computed(() => {
 // Methods
 const handleImageError = (event) => {
   // Optimized fallback image
-  event.target.src = 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
-  logger?.warn('Avatar image failed to load', { 
-    originalSrc: personalInfo.avatar,
-    fallbackSrc: event.target.src 
-  }, 'HomePage')
+  event.target.src =
+    'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop'
+  logger?.warn(
+    'Avatar image failed to load',
+    {
+      originalSrc: personalInfo.avatar,
+      fallbackSrc: event.target.src,
+    },
+    'HomePage',
+  )
 }
 
 const openProjectDemo = (demoUrl) => {
@@ -242,11 +242,11 @@ const openProjectDemo = (demoUrl) => {
 const getSkillIcon = (skillName) => {
   const icons = {
     'Vue.js': '⚛️',
-    'React': '⚛️',
+    React: '⚛️',
     'JavaScript/ES6+': '💻',
-    'TypeScript': '📘',
+    TypeScript: '📘',
     'Tailwind CSS': '🎨',
-    'Node.js': '🟢'
+    'Node.js': '🟢',
   }
   return icons[skillName] || '🛠️'
 }
@@ -254,10 +254,14 @@ const getSkillIcon = (skillName) => {
 // Lifecycle
 onMounted(() => {
   logger?.logPageView('/')
-  logger?.info('HomePage mounted successfully', { 
-    featuredProjectsCount: featuredProjects.value.length,
-    topSkillsCount: topSkills.value.length
-  }, 'HomePage')
+  logger?.info(
+    'HomePage mounted successfully',
+    {
+      featuredProjectsCount: featuredProjects.value.length,
+      topSkillsCount: topSkills.value.length,
+    },
+    'HomePage',
+  )
 })
 </script>
 
@@ -267,13 +271,17 @@ onMounted(() => {
   min-height: 100vh;
   position: relative;
   width: 100%;
-  background: 
+  background:
     linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%),
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.4) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.4) 0%, transparent 50%),
     radial-gradient(circle at 40% 40%, rgba(63, 94, 251, 0.3) 0%, transparent 50%);
   background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%;
 }
 
 .home-page::before {
@@ -283,7 +291,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
     radial-gradient(circle at 25% 75%, rgba(138, 43, 226, 0.2) 0%, transparent 50%),
     radial-gradient(circle at 75% 25%, rgba(255, 20, 147, 0.2) 0%, transparent 50%);
@@ -293,11 +301,18 @@ onMounted(() => {
 }
 
 @keyframes backgroundShift {
-  0%, 100% { 
-    background-position: 0% 50%, 25% 75%, 75% 25%; 
+  0%,
+  100% {
+    background-position:
+      0% 50%,
+      25% 75%,
+      75% 25%;
   }
-  50% { 
-    background-position: 100% 50%, 75% 25%, 25% 75%; 
+  50% {
+    background-position:
+      100% 50%,
+      75% 25%,
+      25% 75%;
   }
 }
 
@@ -316,7 +331,7 @@ onMounted(() => {
 
 /* Hero Section - Enhanced Glassmorphism */
 .hero-section {
-  padding: 5rem 2rem 3rem; 
+  padding: 5rem 2rem 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -331,13 +346,12 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(30px);
   border-radius: 30px;
   margin: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -363,7 +377,7 @@ onMounted(() => {
   position: relative;
   display: flex;
   justify-content: center;
-  width: 100%; 
+  width: 100%;
   max-width: 150px;
 }
 
@@ -373,7 +387,7 @@ onMounted(() => {
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 
+  box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
@@ -391,15 +405,22 @@ onMounted(() => {
   right: -10px;
   bottom: -10px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #3F5EFB, #FC466B, #f093fb);
+  background: linear-gradient(45deg, #3f5efb, #fc466b, #f093fb);
   opacity: 0.6;
   z-index: -1;
   animation: pulse 3s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.6; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }
 
 .hero-text {
@@ -411,7 +432,7 @@ onMounted(() => {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -442,9 +463,9 @@ onMounted(() => {
   gap: 1rem;
   margin-bottom: 2rem;
   width: 100%;
-  max-width: 400px; 
-  margin-left: auto; 
-  margin-right: auto; 
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-primary,
@@ -460,15 +481,15 @@ onMounted(() => {
   font-weight: 600;
   font-size: 1rem;
   transition: all 0.3s ease;
-  min-height: 56px; 
+  min-height: 56px;
   border: 2px solid transparent;
   backdrop-filter: blur(20px);
 }
 
 .cta-primary {
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   color: white;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(63, 94, 251, 0.4),
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
@@ -477,7 +498,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.15);
   color: white;
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -486,7 +507,7 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.1);
   color: white;
   border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
@@ -494,7 +515,7 @@ onMounted(() => {
 .cta-primary:hover,
 .cta-primary:focus {
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(63, 94, 251, 0.5),
     0 0 0 1px rgba(255, 255, 255, 0.2);
 }
@@ -505,7 +526,7 @@ onMounted(() => {
 .cta-tertiary:focus {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -551,8 +572,7 @@ onMounted(() => {
 /* Enhanced Stats Section */
 .stats-section {
   padding: 3rem 2rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -575,20 +595,19 @@ onMounted(() => {
 .stat-item {
   text-align: center;
   padding: 1.5rem 1rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .stat-item:hover {
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -596,7 +615,7 @@ onMounted(() => {
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -632,7 +651,7 @@ onMounted(() => {
 .section-line {
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(90deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   margin: 0 auto 1rem;
   border-radius: 2px;
   box-shadow: 0 2px 10px rgba(63, 94, 251, 0.3);
@@ -647,8 +666,7 @@ onMounted(() => {
 
 /* Enhanced Featured Projects */
 .featured-projects {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
   backdrop-filter: blur(15px);
   width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -666,15 +684,14 @@ onMounted(() => {
 }
 
 .project-preview-card {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -682,11 +699,10 @@ onMounted(() => {
 .project-preview-card:hover,
 .project-preview-card:focus {
   transform: translateY(-8px);
-  box-shadow: 
+  box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
   outline: none;
 }
 
@@ -714,8 +730,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    linear-gradient(135deg, rgba(63, 94, 251, 0.9) 0%, rgba(252, 70, 107, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(63, 94, 251, 0.9) 0%, rgba(252, 70, 107, 0.9) 100%);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -764,8 +779,7 @@ onMounted(() => {
 }
 
 .tech-badge {
-  background: 
-    linear-gradient(135deg, rgba(63, 94, 251, 0.4) 0%, rgba(252, 70, 107, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(63, 94, 251, 0.4) 0%, rgba(252, 70, 107, 0.4) 100%);
   backdrop-filter: blur(10px);
   color: white;
   padding: 0.25rem 0.75rem;
@@ -791,23 +805,21 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border-radius: 15px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .skill-card:hover {
   transform: translateY(-3px);
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-  box-shadow: 
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -846,7 +858,7 @@ onMounted(() => {
 
 .skill-progress {
   height: 100%;
-  background: linear-gradient(90deg, #3F5EFB 0%, #FC466B 50%, #f093fb 100%);
+  background: linear-gradient(90deg, #3f5efb 0%, #fc466b 50%, #f093fb 100%);
   border-radius: 10px;
   transition: width 1s ease-in-out;
   box-shadow: 0 0 10px rgba(63, 94, 251, 0.5);
@@ -870,8 +882,7 @@ onMounted(() => {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
   backdrop-filter: blur(20px);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
@@ -880,17 +891,16 @@ onMounted(() => {
   font-weight: 600;
   transition: all 0.3s ease;
   min-height: 56px;
-  box-shadow: 
+  box-shadow:
     0 4px 15px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .view-all-btn:hover,
 .view-all-btn:focus {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
   transform: translateY(-3px);
-  box-shadow: 
+  box-shadow:
     0 8px 25px rgba(255, 255, 255, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
@@ -912,57 +922,57 @@ onMounted(() => {
     text-align: left;
     gap: 3rem;
   }
-  
+
   .hero-text {
     flex: 1;
   }
-  
+
   .avatar-container {
     width: auto;
     max-width: 200px;
     flex-shrink: 0;
-    justify-content: flex-start; 
+    justify-content: flex-start;
   }
 
   .avatar {
     width: 200px;
     height: 200px;
   }
-  
+
   .hero-name {
     font-size: 3rem;
   }
-  
+
   .hero-title {
     font-size: 1.5rem;
   }
-  
+
   .hero-summary {
     font-size: 1.1rem;
   }
-  
+
   .hero-cta {
     flex-direction: row;
     max-width: none;
-    justify-content: flex-start; 
-    margin-left: 0; 
-    margin-right: 0; 
+    justify-content: flex-start;
+    margin-left: 0;
+    margin-right: 0;
   }
-  
+
   .hero-contact {
     flex-direction: row;
     justify-content: flex-start;
     gap: 2rem;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-  
+
   .projects-preview {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -973,19 +983,19 @@ onMounted(() => {
   .hero-section {
     padding: 6rem 3rem 4rem;
   }
-  
+
   .section-container {
     padding: 4rem 3rem;
   }
-  
+
   .projects-preview {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .hero-cta {
     gap: 1.5rem;
   }
@@ -996,11 +1006,11 @@ onMounted(() => {
   .hero-section {
     padding: 6rem 4rem 4rem;
   }
-  
+
   .section-container {
     padding: 4rem 4rem;
   }
-  
+
   .stats-container {
     padding: 0 4rem;
   }
@@ -1031,7 +1041,7 @@ onMounted(() => {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .avatar-glow,
   .home-page::before {
     animation: none;
@@ -1044,53 +1054,17 @@ onMounted(() => {
     background: white !important;
     color: black !important;
   }
-  
+
   .hero-background,
   .stat-item,
   .project-preview-card {
     background: white !important;
     border: 1px solid #ccc !important;
   }
-  
+
   .project-overlay,
   .avatar-glow {
     display: none !important;
   }
 }
 </style>
-=======
-  <div class="home-page glass-effect">
-    <AboutMe />
-    <Experience />
-    <Skills />
-    <Projects />
-  </div>
-</template>
-
-<script>
-import AboutMe from '../components/sections/AboutMe.vue'
-import Experience from '../components/sections/Experience.vue'
-import Skills from '../components/sections/Skills.vue'
-import Projects from '../components/sections/Projects.vue'
-import { logger } from '../utils/logger'
-
-export default {
-  name: 'HomePage',
-  components: {
-    AboutMe,
-    Experience,
-    Skills,
-    Projects,
-  },
-  mounted() {
-    logger.logPageView('HomePage')
-  },
-}
-</script>
-
-<style scoped>
-.home-page {
-  padding: 20px;
-}
-</style>
->>>>>>> master
